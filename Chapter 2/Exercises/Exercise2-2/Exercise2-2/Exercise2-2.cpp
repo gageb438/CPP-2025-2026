@@ -9,9 +9,9 @@ int main()
 {
 	// create variables
 	const float sales1 = 8.6, sales2 = 10.0;
-	float output1, output2;
-	float percent = .58;
-	
+	double output1, output2;
+	double percent = .58;
+
 	// calculate the outputs
 	output1 = sales1 * percent, output2 = sales2 * percent;
 
