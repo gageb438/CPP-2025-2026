@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
 	// start the output of the symbol
-	cout << "   $   " << endl << "  $$$  " << endl << " $$$$$ " << endl << "$$$$$$$" << endl << " $$$$$ " << endl << "  $$$  " << endl << "   $   "
+	cout << "   $   " << endl << "  $$$  " << endl << " $$$$$ " << endl << "$$$$$$$" << endl << " $$$$$ " << endl << "  $$$  " << endl << "   $   ";
 
 	// return 0
 	return 0;
