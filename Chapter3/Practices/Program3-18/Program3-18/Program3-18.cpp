@@ -1,23 +1,29 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 int main()
 {
 	/*
-	Program3-10
+	Program3-18
 	Accepts no arguments
-	Takes input from the user in the form of an integer
-	uses type casting to convert the integer to a char data type
-	and output the result.
+	Takes input from the user in the form of a first and last name
+	and the city they live in and outputs a summary.
 	*/
 
-	int randomint;
+	// define variables
+	string name, city;
 
-	cout << "Enter an integer value to see the char conversion: ";
-	cin >> randomint;
+	// take input from the user
+	cout << "Enter your first and last name: ";
+	getline(cin, name);
+	cout << "Enter the city you live in: ";
+	getline(cin, city);
 
-	cout << "The integer " << randomint << " converted to a char is: " << static_cast<char>(randomint) << endl;
+	// output a summary
+	cout << "Hello, " << name << endl;
+	cout << "You live in " << city << endl;
 
 	return 0;
 }
