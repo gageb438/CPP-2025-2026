@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
 	/*
-	Progrma 3-22
+	Program 3-22
 	accepts no arguments
 	it demonstrates problems with mixing the use of cin and cin.get()
 	*/
