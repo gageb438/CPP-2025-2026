@@ -15,28 +15,25 @@ int main()
 
 	// initialize variables
 	const float sugar = 1.50,
-				butter = 1.50,
+				butter = 1.00,
 				flour = 2.75,
 				cookies = 48.00;
 
-	double requestedCookies, requiredSugar, requiredButter, requiredFlour, excessCookies;
+	double requestedCookies = 0.00, requiredSugar, requiredButter, requiredFlour, excessCookies;
 
 	// get the amount of cookies
 	cout << "Enter the number of cookies: ";
 	cin >> requestedCookies;
 
 	// calculate the multiplier
-	excessCookies = fmod(requestedCookies, cookies) / cookies;
+	requiredSugar = sugar * requestedCookies / cookies;
+	requiredButter = butter * requestedCookies / cookies;
+	requiredFlour = flour * requestedCookies / cookies;
 
-	requiredSugar = ((requestedCookies / cookies) * sugar) + (excessCookies * sugar);
-	requiredButter = ((requestedCookies / cookies) + excessCookies) * butter;
-	requiredFlour = ((requestedCookies / cookies) + excessCookies) * flour;
-
-	// output the amount
-	cout << "To make " << requestedCookies << " cookies, you will need:" << endl;
-	cout << requiredSugar << " cups of sugar.";
-	cout << requiredButter << " cups of butter.";
-	cout << requiredFlour << " cups of flour.";
+	cout << "\nTo make 120 cookies, you will need:" << endl;
+	cout << setprecision(3) << requiredSugar << " cups of sugar" << endl;
+	cout << setprecision(3) << requiredButter << " cups of butter"<< endl;
+	cout << setprecision(3) << requiredFlour << " cups of flour" << endl;
 
 	return 0;
 }
