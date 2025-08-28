@@ -31,9 +31,11 @@ int main()
 	cout << "+ " << num2 << endl;
 	cout << "------" << endl;
 
+	// take input to see the answer
 	cout << "\nPress Enter to see the answer...";
 	ch = cin.get();
 
+	// output the answer and problem again/
 	cout << "\n  " << num1 << endl;
 	cout << "+ " << num2 << endl;
 	cout << "------" << endl;
