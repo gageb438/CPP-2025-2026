@@ -34,15 +34,18 @@ int main()
 	totalPaid = monthlyPayment * paymentsMade;
 	interestPaid = totalPaid - loan;
 	amountPaidBack = loan + interestPaid;
-
-	cout << monthlyRate << endl << adjustedRate << endl << monthlyPayment << endl << totalPaid << endl << interestPaid << endl << amountPaidBack << endl;
 	
-	cout << "\nLoan Amount:\t\t\t$ " << setprecision(2) << loan << endl;
-	cout << "Monthly Interest rate:\t\t  " << setprecision(2) << monthlyRate << "%" << endl;
+	// set precision to all variables at 2
+	cout << setprecision(2) << fixed << showpoint;
+
+
+	// output all
+	cout << "\nLoan Amount:\t\t\t$ " << loan << endl;
+	cout << "Monthly Interest rate:\t\t  " << monthlyRate << "%" << endl;
 	cout << "Number of Payments:\t\t  " << paymentsMade << endl;
-	cout << "Monthly Payment:\t\t\t $ " << setprecision(2) << monthlyPayment << endl;
-	cout << "Amount Paid Back:\t\t\t $" << setprecision(2) << amountPaidBack << endl;
-	cout << "Interest Paid:\t\t\t $" << setprecision(2) << interestPaid << endl;
+	cout << "Monthly Payment:\t\t$ " << monthlyPayment << endl;
+	cout << "Amount Paid Back:\t\t$ " << amountPaidBack << endl;
+	cout << "Interest Paid:\t\t\t$ " << interestPaid << endl;
 
 	return 0;
 }
