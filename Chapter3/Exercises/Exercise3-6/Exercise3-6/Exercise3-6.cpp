@@ -30,7 +30,7 @@ int main()
 	requiredButter = butter * requestedCookies / cookies;
 	requiredFlour = flour * requestedCookies / cookies;
 
-	cout << "\nTo make 120 cookies, you will need:" << endl;
+	cout << "\nTo make " << requestedCookies << " cookies, you will need : " << endl;
 	cout << setprecision(3) << requiredSugar << " cups of sugar" << endl;
 	cout << setprecision(3) << requiredButter << " cups of butter"<< endl;
 	cout << setprecision(3) << requiredFlour << " cups of flour" << endl;
