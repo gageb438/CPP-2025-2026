@@ -38,9 +38,8 @@ int main()
 	// set precision to all variables at 2
 	cout << setprecision(2) << fixed << showpoint;
 
-
 	// output all
-	cout << "\nLoan Amount:\t\t\t$ " << loan << endl;
+	cout << "\nLoan Amount: " << setw(20) << "$" << loan << endl;
 	cout << "Monthly Interest rate:\t\t  " << monthlyRate << "%" << endl;
 	cout << "Number of Payments:\t\t  " << paymentsMade << endl;
 	cout << "Monthly Payment:\t\t$ " << monthlyPayment << endl;
