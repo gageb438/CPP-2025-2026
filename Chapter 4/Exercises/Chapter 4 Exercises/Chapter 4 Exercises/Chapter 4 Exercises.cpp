@@ -13,7 +13,7 @@ int main()
 	// display the menu to the user
 	cout << "Welcome to the Chapter 4 Exercise Menu" << endl;
 	cout << "Please choose from the following choices:" << endl;
-	cout << "1.\tExercise 4-11 - Math Tutor Revision" << endl;
+	cout << "1.\Practice 4-2" << endl;
 	cout << "2.\tExercise 4-17 - Pole Vault Personal best" << endl;
 	cout << "3.\tExercise 4-23 - Geometry Calculator" << endl;
 	cout << "4.\tExercise 4-27 - WiFi Diagnostic" << endl;
@@ -24,16 +24,32 @@ int main()
 	cout << ":> ";
 	cin >> choice;
 	cout << "------------------------------------" << endl;
-
+	
 	// validate input
 	if (choice >= 1 && choice <= 6)
 	{
 		// process the menu
 		if (choice == 1)
 		{
-			cout << "Exercise 4-11 - Math Tutor Revision" << endl << endl;
+			cout << "Practice 4-2" << endl << endl;
 
-			// do program1 here.
+			/*
+			Accepts no arguments
+			Prompts the user for three test scores to average if the average is higher than the high score constant
+			of 95, display a congratulations message
+			*/
+
+			// create base variables
+			float score1 = 0, score2 = 0, score3 = 0, average = 0;
+
+			cout << "Enter three test scores, seperated by a space and I will average them: ";
+			cin >> score1, score2, score3;
+
+			average = (score1 + score2 + score3) / 3;
+
+			cout << endl << "Your average is " << average << endl;
+			
+			return 0;
 		}
 		else if (choice == 2)
 		{
