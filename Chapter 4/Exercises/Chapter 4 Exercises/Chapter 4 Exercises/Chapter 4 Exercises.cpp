@@ -20,6 +20,8 @@ int main()
 	cout << "5.\tPractice 4-9" << endl;
 	cout << "6.\tPractice 4-10" << endl;
 	cout << "7.\tPractice 4-14" << endl;
+	cout << "8.\tPractice 4-18" << endl;
+	cout << "9.\tPractice 4-19" << endl;
 	cout << "99.\tQuit" << endl;
 
 	// get input from the user
@@ -227,6 +229,126 @@ int main()
 
 			cout << "Enter a grade percent." << endl << ": ";
 			cin >> testingPercent;
+
+			if (testingPercent >= A_SCORE)
+			{
+				cout << "You got a A.";
+			}
+			else if (testingPercent >= B_SCORE)
+			{
+				cout << "You got a B.";
+			}
+			else if (testingPercent >= C_SCORE)
+			{
+				cout << "You got a C.";
+			}
+			else if (testingPercent >= D_SCORE)
+			{
+				cout << "You got a D.";
+			}
+			else if (testingPercent >= F_SCORE)
+			{
+				cout << "You got a F.";
+			}
+			else
+			{
+				cout << "Invalid input.";
+			}
+
+			return 0;
+		}
+		else if (choice == 8)
+		{
+			/*
+			Program 4-1
+			Accepts no arguments
+			Presents the user with the menu:
+			Health Club Membership Menu
+			1. Standard Adult Membership
+			2. Child Membership
+			3. Senior Citizen Membership
+			4. Quit Program
+			Enter your choice:
+			it prompts the user for the # of months and calculates fees
+			Adult = 40.0, Senior = 30.0, Child = 20.0 (Per month)
+			*/
+
+			// set the variables
+			const float Adult = 40.0,
+				Senior = 30.0,
+				Child = 20.0;
+
+			int months = 0, choice = 0;
+			double fees = 0.0;
+
+			// print the menu
+			cout << "Health Club Membership Menu" << endl;
+			cout << "1. Standard Adult Membership" << endl;
+			cout << "2. Child Membership" << endl;
+			cout << "3. Senior Citizen Membership" << endl;
+			cout << "4. Quit the Program" << endl;
+			cout << "Enter your choice: ";
+
+			cin >> choice;
+
+			if (choice >= 1 && choice <= 4)
+			{
+				cout << "For how many months?\n:> ";
+				cin >> months;
+
+				if (choice == 1)
+				{
+					fees = Adult * months;
+				}
+				else if (choice == 2)
+				{
+					fees = Child * months;
+				}
+				else if (choice == 3)
+				{
+					fees = Senior * months;
+				}
+				else
+				{
+					cout << "Thank you for visiting member services. Have a great day!";
+					return 0;
+				}
+
+				cout << "Your total membership fees are: $" << setw(4) << fees << endl;
+
+				return 0;
+			}
+			else
+			{
+				cout << "Invalid choice. Only enter values 1-4.";
+				return 0;
+			}
+		}
+		else if (choice == 9)
+		{
+			cout << "Practice 4-19" << endl;
+
+			/*
+			Program 4-19 accepts no arguments
+			It takes input from the user for a grade percent as an integer
+			and outputs the letter grade
+			a trailing else catches any other inputs*/
+
+			int testingPercent;
+			const int A_SCORE = 90,
+				B_SCORE = 80,
+				C_SCORE = 70,
+				D_SCORE = 60,
+				F_SCORE = 0;
+
+			cout << "Enter a grade percent." << endl << ": ";
+			cin >> testingPercent;
+
+			if (testingPercent < 0 || testingPercent > 100)
+			{
+				cout << "Only enter numbers from 0-100!.";
+				return 0;
+			}
 
 			if (testingPercent >= A_SCORE)
 			{
