@@ -22,6 +22,8 @@ int main()
 	cout << "7.\tPractice 4-14" << endl;
 	cout << "8.\tPractice 4-18" << endl;
 	cout << "9.\tPractice 4-19" << endl;
+	cout << "10.\tPractice 4-22" << endl;
+	cout << "11.\tPractice 4-23" << endl;
 	cout << "99.\tQuit" << endl;
 
 	// get input from the user
@@ -377,10 +379,71 @@ return 0;
 
 			return 0;
 			}
+		else if (choice == 10)
+		{
+			/*
+			Program 43-22
+			Accepts no arguments
+			prompts the user for hours and charges
+			calculates the total charges at $50/hour with
+			a minimum rate of 5 hours
+			use the ?: operator to change the hours
+			to 5 if hours < 5 and outpuot
+			the total charges to the user
+			*/
+
+			// initialize constants and variables
+			const double PAY_RATE = 50.00;
+			const int MIN_HOURS = 5;
+			double hours, charges;
+
+			// take input from the user for the number of hours
+			cout << "How many hours were worked?\n> ";
+			cin >> hours;
+
+			// calculate the total charges, increasing hours worked
+			// to a minimum of five
+			hours = hours < MIN_HOURS ? MIN_HOURS : hours;
+			charges = hours * PAY_RATE;
+
+			// format and output results to the user
+			cout << fixed << showpoint << setprecision(2) << "The charges are $" << charges << endl;
+
+			return 0;
+		}
+		else if (choice == 11)
+		{
+			/*
+			Program 4-23
+			Accepts no arguments
+			Takes input from the user in the form of a char
+			Uses a switch ot tell the user what he or she entered
+			*/
+
+			// define variables
+			char choice;
+
+			// prompt the user for input
+			cout << "Choose from the following: A, B, or C: ";
+			cin >> choice;
+
+			// use the switch statement to report the selection
+			switch (choice)
+			{
+			case 'A': cout << "You entered A.\n";
+				break;
+			case 'B': cout << "You entered B.\n";
+				break;
+			case 'C': cout << "You entered C.\n";
+				break;
+
+			default: cout << "You did not enter A, B, or C!\n";
+			}
+		}
 		else
 		{
 			cout << "Thank you for using the Exercise Selection System." << endl << endl;
-			}
+		}
 	}
 	// catch any input error
 	else
