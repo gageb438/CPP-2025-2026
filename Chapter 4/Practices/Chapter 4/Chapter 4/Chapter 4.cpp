@@ -24,6 +24,7 @@ int main()
 	cout << "9.\tPractice 4-19" << endl;
 	cout << "10.\tPractice 4-22" << endl;
 	cout << "11.\tPractice 4-23" << endl;
+	cout << "12. Practice 4-25" << endl;
 	cout << "99.\tQuit" << endl;
 
 	// get input from the user
@@ -439,6 +440,29 @@ return 0;
 
 			default: cout << "You did not enter A, B, or C!\n";
 			}
+		}
+		else if (choice == 12)
+		{
+			// define variables
+			int modelNum;
+
+			// take input from the user for the model number
+			cout << "Our TVs come in three models: The 100, 200, and 300." << endl << "Which model do you want to see features for?" << endl << ":> ";
+			cin >> modelNum;
+
+			// process model features
+			cout << "That model has the following features:" << endl;
+
+			switch (modelNum)
+			{
+			case 300: cout << "\tPicture-in-a-Picture" << endl;
+			case 200: cout << "\tStereo Sound" << endl;
+			case 100: cout << "\Remote Control" << endl;
+				break;
+			default: cout << "You can only choose from the 100, 200, and 300!" << endl;
+			}
+
+			return 0;
 		}
 		else
 		{
