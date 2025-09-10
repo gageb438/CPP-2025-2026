@@ -2,11 +2,12 @@
 #include <iomanip>
 #include <cstdlib>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
 int main()
-{
+{ 
 	// define variable for menu choice
 	int choice = 0;
 
@@ -40,7 +41,7 @@ int main()
 		*/
 
 		// give a seed and create variables
-		unsigned seed = time(0);
+		unsigned int seed = time(0);
 		srand(seed);
 
 		int maxNum = 500,
@@ -73,7 +74,7 @@ int main()
 			cout << "------" << endl;
 			cout << "  " << output << endl;
 		}
-		return 0;
+		break;
 	}
 	case 2:
 	{
@@ -95,27 +96,31 @@ int main()
 			vault2height,
 			vault3height;
 		// take input
+		cin.ignore();
 		cout << "Enter the pole vaulter's name: ";
-		cin >> name;
+		getline(cin, name);
 
 		cout << "Enter the date of the first pole vault: ";
-		cin >> vault1date;
+		getline(cin, vault1date);
 
 		cout << "Enter the height of the first pole vault: ";
 		cin >> vault1height;
 
+		cin.ignore();
 		cout << "Enter the date of the second pole vault: ";
-		cin >> vault2date;
+		getline(cin, vault2date);
 
 		cout << "Enter the height of the second pole vault: ";
 		cin >> vault2height;
 
+		cin.ignore();
 		cout << "Enter the date of the third pole vault: ";
-		cin >> vault3date;
+		getline(cin, vault3date);
 
 		cout << "Enter the height of the third pole vault: ";
 		cin >> vault3height;
 
+		// calculate and output.
 		if (!(vault1height >= 2 && vault1height <= 5 && vault2height >= 2 && vault2height <= 5 && vault3height >= 2 && vault3height <= 5))
 		{
 			cout << "All pole vault heights must be greater than or equal to 2 and less than or equal to 5.";
@@ -141,5 +146,154 @@ int main()
 				cout << "The best vault took place on " << vault2date << " with a height of " << vault2height << endl;
 				cout << "The 2nd best vault took place on " << vault1date << " with a height of " << vault1height << endl;
 				cout << "The 3rd best vault took place on " << vault3date << " with a height of " << vault3height << endl;
+			}
+			else if (vault2height >= vault3height && vault3height >= vault1height)
+			{
+				cout << "The best vault took place on " << vault2date << " with a height of " << vault2height << endl;
+				cout << "The 2nd best vault took place on " << vault3date << " with a height of " << vault3height << endl;
+				cout << "The 3rd best vault took place on " << vault1date << " with a height of " << vault1height << endl;
+			}
+			else if (vault3height >= vault2height && vault2height >= vault1height)
+			{
+				cout << "The best vault took place on " << vault3date << " with a height of " << vault3height << endl;
+				cout << "The 2nd best vault took place on " << vault2date << " with a height of " << vault2height << endl;
+				cout << "The 3rd best vault took place on " << vault1date << " with a height of " << vault1height << endl;
+			}
+			else if (vault3height >= vault1height && vault1height >= vault2height)
+			{
+				cout << "The best vault took place on " << vault3date << " with a height of " << vault3height << endl;
+				cout << "The 2nd best vault took place on " << vault1date << " with a height of " << vault1height << endl;
+				cout << "The 3rd best vault took place on " << vault2date << " with a height of " << vault2height << endl;
+			}
+			else
+			{
+				cout << "Error! All heights must be numbers.";
+			}
+			break;
 		}
 	}
+	case 3:
+	{
+		/*
+		Exercise 23 displays 3 options.
+		It calculates the area for circle ,rectangle, and triangle
+		it then outputs the answer
+		*/
+
+		int choice;
+
+		cout << "1. Calculate the Area of a Circle" << endl;
+		cout << "2. Calculate the Area of a Rectangle" << endl;
+		cout << "3. Calculate the Area of a Triangle" << endl;
+		cout << "4. Quit." << endl;
+		cout << "Enter your choice (1 - 4): ";
+
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+		{
+			// intiialize variables
+			float radius,
+				area;
+
+			const float pi = 3.14;
+
+			// take input and validate
+			cout << "Enter the circle's radius: ";
+			cin >> radius;
+
+			if (radius <= 0)
+			{
+				cout << "The radius must not be less than or equal to 0.";
+				break;
+			}
+
+			// calculate and output
+			area = pi * pow(radius, 2);
+
+			cout << "The area is " << area << endl;
+			break;
+		}
+		case 2:
+		{
+			// intiailize variables
+			int length,
+				width,
+				area;
+
+			// output and take input
+			cout << "Enter the rectangle's length: ";
+			cin >> length;
+			cout << "Enter the rectangle's width: ";
+			cin >> width;
+
+			// validate
+			if (length <= 0 || width <= 0)
+			{
+				cout << "Length and width must not be less than or equal to 0.";
+				break;
+			}
+
+			// calculate
+			area = width * length;
+
+			// output
+			cout << "The area is " << area;
+
+			break;
+		}
+		case 3:
+		{
+			// initialize variables
+			float base,
+				height,
+				area;
+
+			// output and take input
+			cout << "Enter the triangle's base: ";
+			cin >> base;
+			cout << "Enter the triangle's height: ";
+			cin >> height;
+
+			// validate
+			if (base <= 0 || height <= 0)
+			{
+				cout << "Base and height must not be less than or equal to 0.";
+				break;
+			}
+
+			// calculate
+
+			area = .5 * base * height;
+			// output
+			cout << "The area is " << area;
+		}
+		default: cout << "Invalid menu choice.";
+		}
+
+		break;
+	case 4:
+	{
+		/*
+		Diagnostic tree asks users for the fixes to their wifi
+		and runs through an if then tree and else.
+		and outputs how to fix it.
+		*/
+
+		char choice;
+
+		cout << "Reboot Computer and try to connect" << endl;
+		cout << "Did that fix the problem?" << endl << ":> ";
+		cin.get(choice);
+
+		if (choice == 'n' or choice == 'N')
+		{
+
+		}
+	}
+	}
+	default: cout << "Invalid menu choice.";
+	}
+}
