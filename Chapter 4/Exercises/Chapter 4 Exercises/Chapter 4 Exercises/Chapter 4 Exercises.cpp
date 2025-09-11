@@ -378,7 +378,7 @@ int main()
 		// output
 		cout << "Here are your restaurant choices:" << endl;
 
-		if (JOES = true)
+		if (JOES == true)
 		{
 			cout << "\tJoe's Gourmet Burgers" << endl;
 		}
@@ -396,11 +396,14 @@ int main()
 		}
 		if (CHEF == true)
 		{
-			cout << "Chef's Kitchen" << endl;
+			cout << "\tChef's Kitchen" << endl;
 		}
 
 		break;
 	}
+	case 6:
+		cout << "Quitting...";
+		break;
 	}
 	default: cout << "Invalid menu choice.";
 	}
