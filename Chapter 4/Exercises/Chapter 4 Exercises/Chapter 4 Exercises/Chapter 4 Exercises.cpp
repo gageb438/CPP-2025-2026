@@ -41,7 +41,7 @@ int main()
 		*/
 
 		// give a seed and create variables
-		unsigned int seed = time(0);
+		const unsigned int seed = time(0);
 		srand(seed);
 
 		int maxNum = 500,
@@ -195,10 +195,10 @@ int main()
 		case 1:
 		{
 			// intiialize variables
-			float radius,
+			double radius,
 				area;
 
-			const float pi = 3.14;
+			const double pi = 3.1415926535897932384626433832795028841;
 
 			// take input and validate
 			cout << "Enter the circle's radius: ";
@@ -213,7 +213,7 @@ int main()
 			// calculate and output
 			area = pi * pow(radius, 2);
 
-			cout << "The area is " << area << endl;
+			cout << endl << "The area is " << area << endl;
 			break;
 		}
 		case 2:
@@ -240,14 +240,14 @@ int main()
 			area = width * length;
 
 			// output
-			cout << "The area is " << area;
+			cout << endl << "The area is " << area;
 
 			break;
 		}
 		case 3:
 		{
 			// initialize variables
-			float base,
+			double base,
 				height,
 				area;
 
@@ -268,7 +268,8 @@ int main()
 
 			area = .5 * base * height;
 			// output
-			cout << "The area is " << area;
+			cout << endl << "The area is " << area;
+			break;
 		}
 		default: cout << "Invalid menu choice.";
 		}
@@ -282,16 +283,123 @@ int main()
 		and outputs how to fix it.
 		*/
 
+		// intialize
 		char choice;
 
+		// ask questions and figure out issue
 		cout << "Reboot Computer and try to connect" << endl;
-		cout << "Did that fix the problem?" << endl << ":> ";
+		cout << "Did that fix the problem? (y/n)" << endl << ":> ";
+		cin.ignore();
 		cin.get(choice);
 
 		if (choice == 'n' or choice == 'N')
 		{
+			cout << "Reboot router and try to connect" << endl;
+			cout << "Did that fix the problem? (y/n)" << endl << ":> ";
+			cin.ignore();
+			cin.get(choice);
 
+			if (choice == 'n' or choice == 'N')
+			{
+				cout << "Verify cables are firmly attached" << endl;
+				cout << "Did that fix the problem? (y/n)" << endl << ":> ";
+				cin.ignore();
+				cin.get(choice);
+
+				if (choice == 'n' or choice == 'N')
+				{
+					cout << "Move router to better location" << endl;
+					cout << "Did that fix the problem? (y/n)" << endl << ":> ";
+					cin.ignore();
+					cin.get(choice);
+
+					if (choice == 'n' or choice == 'N')
+					{
+						cout << "Get a new router.";
+
+					}
+				}
+				else
+					cout << "Netflix and chill.";
+			}
+			else
+				cout << "Netflix and chill.";
 		}
+		else
+			cout << "Netflix and chill.";
+
+		break;
+	}
+	case 5:
+	{
+		/*
+		Prompt users questions 
+		and output what restaurants they can go to
+		*/
+
+		// initialize variables
+		char vegetarian, vegan, gluten;
+		bool JOES = true,
+			MAINSTREET = true,
+			CORNER = true,
+			MAMA = true,
+			CHEF = true;
+
+		// get input
+		cout << "Is anyone in the party a vegetarian? (y/n): ";
+		cin.ignore();
+		cin.get(vegetarian);
+
+		cout << "Is anyone in the party a vegan? (y/n): ";
+		cin.ignore();
+		cin.get(vegan);
+		
+		cout << "Is anyone in the party gluten intolerant? (y/n): ";
+		cin.ignore();
+		cin.get(gluten);
+
+		// calculate
+		if (vegetarian == 'y' or vegetarian == 'Y')
+		{
+			JOES = false;
+		}
+		if (vegan == 'y' or vegan == 'Y')
+		{
+			JOES = false;
+			MAINSTREET = false;
+			MAMA = false;
+		}
+		if (gluten == 'y' or gluten == 'Y')
+		{
+			JOES = false;
+			MAMA = false;
+		}
+
+		// output
+		cout << "Here are your restaurant choices:" << endl;
+
+		if (JOES = true)
+		{
+			cout << "\tJoe's Gourmet Burgers" << endl;
+		}
+		if (MAINSTREET == true)
+		{
+			cout << "\tMain Street Pizza" << endl;
+		}
+		if (MAMA == true)
+		{
+			cout << "\tMama's Fine Italian" << endl;
+		}
+		if (CORNER == true)
+		{
+			cout << "\tCorner Cafe" << endl;
+		}
+		if (CHEF == true)
+		{
+			cout << "Chef's Kitchen" << endl;
+		}
+
+		break;
 	}
 	}
 	default: cout << "Invalid menu choice.";
