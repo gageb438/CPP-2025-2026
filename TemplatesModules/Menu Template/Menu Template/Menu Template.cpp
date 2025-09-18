@@ -7,64 +7,75 @@ using namespace std;
 
 int main()
 {
-	// define variable for menu choice
-	int choice = 0;
-
-	// display the menu to the user
-	cout << "Welcome to the Chapter 4 Exercise Menu" << endl;
-	cout << "Please choose from the following choices:" << endl;
-	cout << "1.\tExercise 4-11 - Math Tutor Revision" << endl;
-	cout << "2.\tExercise 4-17 - Pole Vault Personal best" << endl;
-	cout << "3.\tExercise 4-23 - Geometry Calculator" << endl;
-	cout << "4.\tExercise 4-27 - WiFi Diagnostic" << endl;
-	cout << "5.\tExercise 4-28 - Restaurant Selector" << endl;
-	cout << "6.\tQuit" << endl;
-
-	// get input from the user
-	cout << ":> ";
-	cin >> choice;
-	cout << "------------------------------------" << endl;
-
-	// validate input
-	if (choice >= 1 && choice <= 6)
+	do
 	{
-		// process the menu
-		if (choice == 1)
-		{
-			cout << "Exercise 4-11 - Math Tutor Revision" << endl << endl;
+		// define variable for menu choice
+		int choice = 0;
 
-			// do program1 here.
-		}
-		else if (choice == 2)
-		{
-			cout << "Exercise 4-17 - Pole Vault Personal Best" << endl << endl;
+		// display the menu to the user
+		cout << "Welcome to the Chapter 4 Exercise Menu" << endl;
+		cout << "Please choose from the following choices:" << endl;
+		cout << "1.\tExercise # - ##" << endl;
+		cout << "2.\tQuit" << endl;
 
-			// ``
-		}
-		else if (choice == 3)
-		{
-			cout << "Exercise 4-23 - Gemometry Calculator" << endl << endl;
+		// get input from the user
+		cout << ":> ";
+		cin >> choice;
+		cout << "------------------------------------" << endl;
 
-			// ``
-		}
-		else if (choice == 4)
+		// switch
+		switch (choice)
 		{
-			cout << "Exercise 4-27 - WiFi Diagnostic" << endl << endl;
+		case 1:
+		{
+			cout << "Exercise # - ##";
 
-			// ``
+			// code.
+
+			break;
 		}
-		else if (choice == 5)
+		case 2:
 		{
-			cout << "Exercise 4-28 - Restaurant Selector" << endl << endl;
+			cout << "Exercise # - ##";
+
+			// code.
+
+			break;
 		}
-		else
+		case 3:
 		{
-			cout << "Thank you for using the Exercise Selection System." << endl << endl;
+			cout << "Exercise # - ##";
+
+			// code.
+
+			break;
 		}
-	}
-	// catch any input error
-	else
-	{
-		cout << endl << endl << "Invalid choice, try again" << endl << endl;
-	}
+		case 4:
+		{
+			cout << "Exercise # - ##";
+
+			// code.
+
+			break;
+		}
+		case 5:
+		{
+			cout << "Exercise # - ##";
+
+			// code.
+
+			break;
+		}
+		case 6:
+		{
+			cout << "Exercise # - ##";
+
+			// code.
+
+			break;
+		}
+		}
+		
+	} while (choice < 1 || choice > 2)
+	
 }

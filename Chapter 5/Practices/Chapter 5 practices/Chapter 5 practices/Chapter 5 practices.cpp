@@ -19,7 +19,8 @@ int main()
 	cout << "3.\tPractice 3" << endl;
 	cout << "4.\tPractice 4" << endl;
 	cout << "5.\tPractice 6" << endl;
-	cout << "6.\tQuit" << endl;
+	cout << "6.\tPractice 7" << endl;
+	cout << "99.\tQuit" << endl;
 
 	// get input from the user
 	cout << ":> ";
@@ -144,7 +145,67 @@ int main()
 		}
 		break;
 	}
-	case 6:
+	case 7:
+	{
+		//5-7
+		// intialize variable
+		int choice = 0; // prime loop
+		while (choice != 5) // continue looping until the user enters 5
+		{
+			do //validate the menu choice
+			{
+				cout << "\nWelcome to the Coffee Kraze Kiosk." << endl;
+				cout << "Please make a selection from the options below:" << endl;
+				cout << "1. Coffee ala Americana" << endl;
+				cout << "2. Caramel Machiato" << endl;
+				cout << "3. Mocha Frappe" << endl;
+				cout << "4. Cappuccino" << endl;
+				cout << "5. Quit" << endl;
+				cout << "Enter your selection: >";
+				cin >> choice;
+			} while (choice < 1 || choice > 5);
+
+			// proccess the choice
+			switch (choice)
+			{
+			case 1:
+			{
+				cout << "Here is your Coffee ala Americana. Enjoy!" << endl;
+
+				break;
+			}
+			case 2:
+			{
+				cout << "Here is your Caramle Machiato. Enjoy!" << endl;
+
+				break;
+			}
+			case 3:
+			{
+				cout << "Here is your Mocha Frappe. Enjoy!" << endl;
+
+				break;
+			}
+			case 4:
+			{
+				cout << "Here is your Cappuccino. Enjoy!" << endl;
+
+				break;
+			}
+			case 5:
+			{
+				cout << "Thank you for stopping by. Have a groovy day!" << endl;
+
+				break;
+			}
+			}
+		}
+	}
+	case 8:
+	{
+
+	}
+	case 99:
 	{
 		cout << "Quitting...";
 		break;
