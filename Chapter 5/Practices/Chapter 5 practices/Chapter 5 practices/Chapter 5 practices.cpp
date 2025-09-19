@@ -20,6 +20,10 @@ int main()
 	cout << "4.\tPractice 4" << endl;
 	cout << "5.\tPractice 6" << endl;
 	cout << "6.\tPractice 7" << endl;
+	cout << "7.\tPractice 9" << endl;
+	cout << "8.\tPractice 11" << endl;
+	cout << "9.\tPractice 12" << endl;
+	cout << "10.\tPractice 13" << endl;
 	cout << "99.\tQuit" << endl;
 
 	// get input from the user
@@ -145,7 +149,7 @@ int main()
 		}
 		break;
 	}
-	case 7:
+	case 6:
 	{
 		//5-7
 		// intialize variable
@@ -201,7 +205,78 @@ int main()
 			}
 		}
 	}
+	case 7:
+	{
+		//5-9
+
+		const int MAX_VALUE = 10;
+		int counter;
+
+		cout << "Number\t\tNumber Squared" << endl;
+		cout << "-----------------------------------";
+
+		for (counter = 0; counter <= MAX_VALUE; counter++)
+		{
+			cout << counter << "\t\t" << pow(counter, 2) << endl;
+		}
+
+		break;
+	}
 	case 8:
+	{
+		// consts
+		const int KPH_MIN = 60, KPH_MAX = 130, INCREMENT = 10;
+		const double CONV = 0.6214;
+
+		// init variables
+		int kph;
+		double mph;
+
+		// header
+		cout << "KPH\t\tMPH" << endl;
+		cout << "_________________________" << endl;
+		cout << fixed << showpoint << setprecision(2);
+
+		// loop
+		for (kph = KPH_MIN; kph <= KPH_MAX; kph += INCREMENT)
+		{
+			mph = kph * CONV;
+			cout << kph << "\t\t" << mph << endl;
+		}
+
+		break;
+	}
+	case 9:
+	{
+		//5-12
+		/*
+		Accepts no arguments
+		Uses a user-controlled loop to input and accumulate
+		a total number of sales for the number of days
+		specified by the user and outputs the total.
+		*/
+
+		int needed_days = 0,
+			current_day = 1;
+
+		double sales, total = 0;
+
+		cout << "How many days do you want to enter sales for? : ";
+		cin >> needed_days;
+
+		for (current_day; current_day <= needed_days; current_day++)
+		{
+			cout << "Enter the sales for day " << current_day << ": ";
+			cin >> sales;
+			total += sales;
+		}
+
+		cout << fixed << showpoint << setprecision(2);
+		cout << "The total sales for " << needed_days << " days is: $" << total << endl;
+
+		break;
+	}
+	case 10:
 	{
 
 	}

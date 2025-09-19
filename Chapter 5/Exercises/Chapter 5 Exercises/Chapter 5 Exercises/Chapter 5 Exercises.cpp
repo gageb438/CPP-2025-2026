@@ -17,6 +17,7 @@ int main()
 		cout << "Welcome to the Chapter 5 Exercise Menu" << endl;
 		cout << "Please choose from the following choices:" << endl;
 		cout << "1.\tExercise 5 - 20" << endl;
+		cout << "3.\tExercise 5 - 23" << endl;
 		cout << "2.\tQuit" << endl;
 
 		// get input from the user
@@ -89,9 +90,27 @@ int main()
 		}
 		case 3:
 		{
-			cout << "Exercise # - ##";
+			cout << "Exercise 5 - 23" << endl;
 
-			// code.
+			int star_counter = 1;
+			
+			for (star_counter; star_counter <= 10; star_counter++)
+			{
+				for (int count2 = star_counter; count2 != 0; count2--)
+				{
+					cout << "*";
+				}
+				cout << endl;
+			}
+
+			for (star_counter; star_counter != 0; star_counter--)
+			{
+				for (int count2 = star_counter; count2 != 0; count2--)
+				{
+					cout << "*";
+				}
+				cout << endl;
+			}
 
 			break;
 		}
