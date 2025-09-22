@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <string>
 #include <ctime>
+#include <fstream>
 
 using namespace std;
 
@@ -17,8 +18,9 @@ int main()
 		cout << "Welcome to the Chapter 5 Exercise Menu" << endl;
 		cout << "Please choose from the following choices:" << endl;
 		cout << "1.\tExercise 5 - 20" << endl;
+		cout << "2.\tExercise 5 - 24" << endl;
 		cout << "3.\tExercise 5 - 23" << endl;
-		cout << "2.\tQuit" << endl;
+		cout << "7.\tQuit" << endl;
 
 		// get input from the user
 		cout << ":> ";
@@ -82,11 +84,72 @@ int main()
 		}
 		case 2:
 		{
-			cout << "Exercise # - ##";
+			cout << "Exercise 5 - 24" << endl;
 
-			// code.
+			/*
+			Exercise 5-24
+			Reads through random.txt, counts the number of numbers
+			counts the sum, and calculates the average
+			while also finding minimum and maximum value
+			It then outputs this all to the user
+			*/
 
-			break;
+			// intiialize
+			int num = 0,
+				min = 99999999999,
+				max = 0;
+
+			// for division later, had to set them as a float.
+			double avg,
+				total = 0.0,
+				counter = 0.0;
+			ifstream outFile;
+
+			// open file
+			outFile.open("C:\\Users\\2013565\\Documents\\GitHub\\CPP-2025-2027\\Data Files\\Random.txt");
+
+			// if the file exists
+			if (!outFile) // file doesnt exist.
+			{
+				cout << "File not found." << endl;
+				break;
+			}
+			else // file exists.
+			{
+				cout << "File found." << endl;
+				// while theres lines in the file
+				while (outFile >> num)
+				{
+					// add to the total and up the counter by 1.
+					total += num;
+					counter++;
+
+					// check if it is the new max or min
+					// and replace if needed.
+					if (num > max)
+					{
+						max = num;
+					}
+
+					if (num < min)
+					{
+						min = num;
+					}
+				}
+
+				// calculate the average
+				avg = total / counter;
+
+				// output everything.
+				cout << "Number of numbers: " << num << endl;
+				cout << "Sum of the numbers: " << total << endl;
+				cout << "Average of the numbers: " << avg << endl;
+				cout << "Minimum value: " << min << endl;
+				cout << "Maximum value: " << max << endl;
+
+				outFile.close();
+				break;
+			}
 		}
 		case 3:
 		{
@@ -116,9 +179,23 @@ int main()
 		}
 		case 4:
 		{
-			cout << "Exercise # - ##";
+			cout << "Exercise 5 - 24";
 
-			// code.
+			/*
+			5-24
+			takes input for a name,
+			a sentence about the user,
+			and then makes a webpage,
+			then takes input for the name of the file,
+			then writes to the file,
+			and outputs the success message.
+			*/
+
+			// initialize
+			string name,
+				bio;
+
+			)
 
 			break;
 		}
@@ -138,6 +215,11 @@ int main()
 
 			break;
 		}
+		case 7:
+		{
+			cout << "Quitting..." << endl;
+			break;
 		}
-	} while (choice < 1 || choice > 2);
+		}
+	} while (choice < 1 || choice > 7);
 }
