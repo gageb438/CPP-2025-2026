@@ -20,7 +20,9 @@ int main()
 		cout << "1.\tExercise 5 - 20" << endl;
 		cout << "2.\tExercise 5 - 24" << endl;
 		cout << "3.\tExercise 5 - 23" << endl;
-		cout << "7.\tQuit" << endl;
+		cout << "4.\tExercise 5 - 26" << endl;
+		cout << "5.\tExercise 5 - 27" << endl;
+		cout << "6.\tQuit" << endl;
 
 		// get input from the user
 		cout << ":> ";
@@ -179,7 +181,7 @@ int main()
 		}
 		case 4:
 		{
-			cout << "Exercise 5 - 24";
+			cout << "Exercise 5 - 24" << endl;
 
 			/*
 			5-24
@@ -193,33 +195,301 @@ int main()
 
 			// initialize
 			string name,
-				bio;
+				bio,
+				filename;
 
-			)
+			// collect the data
+			cout << "Enter your name: ";
+			cin.ignore();
+			getline(cin, name);
+			
+			cout << "Enter a sentence about yourself: ";
+			getline(cin, bio);
+
+			// get the file name
+			cout << "Enter the name of the file (with .html): ";
+			getline(cin, filename);
+
+			// open the file
+			ofstream outFile;
+			outFile.open(filename);
+
+			// write the html
+			outFile << "<html>" << endl;
+			outFile << "<head>" << endl;
+			outFile << "</head>" << endl;
+			outFile << "<body>" << endl;
+			outFile << "\t<center>" << endl;
+			outFile << "\t\t<h1>" << name << "</h1>" << endl;
+			outFile << "\t</center>" << endl;
+			outFile << "\t<hr />" << endl;
+			outFile << "\t" << bio << endl;
+			outFile << "\t<hr />" << endl;
+			outFile << "</body>" << endl;
+			outFile << "</html>" << endl;
+
+			// close the file
+			outFile.close();
+
+			// output success
+			cout << "Success!";
 
 			break;
 		}
 		case 5:
 		{
-			cout << "Exercise # - ##";
+			cout << "Exercise 5 - 27" << endl;
 
-			// code.
+			/*
+			exercise 5-27
+			reads through steps.txt
+			calculating the amount of value each month
+			and then outputs it to the user.
+			*/
 
+			// initialize variables
+			float day = 0,
+				steps = 0,
+				january = 0,
+				february = 0,
+				march = 0,
+				april = 0,
+				may = 0,
+				june = 0,
+				july = 0,
+				august = 0,
+				september = 0,
+				october = 0,
+				november = 0,
+				december = 0;
+			
+			string currentMonth = "jan";
+
+			ifstream infile;
+			infile.open("C:\\Users\\2013565\\Documents\\GitHub\\CPP-2025-2027\\Data Files\\steps.txt");
+			
+			if (!infile)
+			{
+				cout << "File not found. " << endl;
+				break;
+			}
+			else
+			{	
+				while (infile >> steps)
+				{
+					if (currentMonth == "jan")
+					{
+						if (day != 31)
+						{
+							// add steps to january
+							january += steps;
+							// increase day counter by 1
+							day++;
+						}
+						else
+						{
+							february += steps;
+							day = 1;
+							currentMonth = "feb";
+						}
+					}
+					else if (currentMonth == "feb")
+					{
+						if (day != 28)
+						{
+							// add steps to february
+							february += steps;
+							// increase day counter by 1
+							day++;
+						}
+						else
+						{
+							march += steps;
+							day = 1;
+							currentMonth = "mar";
+						}
+					}
+					else if (currentMonth == "mar")
+					{
+						if (day != 31)
+						{
+							// add steps to march
+							march += steps;
+							// increase day counter by 1
+							day++;
+						}
+						else
+						{
+							april += steps;
+							day = 1;
+							currentMonth = "apr";
+						}
+					}
+					else if (currentMonth == "apr")
+					{
+						if (day != 30)
+						{
+							// add steps to april
+							april += steps;
+							// increase day counter by 1
+							day++;
+						}
+						else
+						{
+							may += steps;
+							day = 1;
+							currentMonth = "may";
+						}
+					}
+					else if (currentMonth == "may")
+					{
+						if (day != 31)
+						{
+							// add steps to may
+							may += steps;
+							// increase day counter by 1
+							day++;
+						}
+						else
+						{
+							june += steps;
+							day = 1;
+							currentMonth = "jun";
+						}
+					}
+					else if (currentMonth == "jun")
+					{
+						if (day != 30)
+						{
+							// add steps to june
+							may += steps;
+							// increase day counter by 1
+							day++;
+						}
+						else
+						{
+							july += steps;
+							day = 1;
+							currentMonth = "jul";
+						}
+					}
+					else if (currentMonth == "jul")
+					{
+						if (day != 31)
+						{
+							// add steps to july
+							july += steps;
+							// increase day counter by 1
+							day++;
+						}
+						else
+						{
+							august += steps;
+							day = 1;
+							currentMonth = "aug";
+						}
+					}
+					else if (currentMonth == "aug")
+					{
+						if (day != 31)
+						{
+							// add steps to august
+							august += steps;
+							// increase day counter by 1
+							day++;
+						}
+						else
+						{
+							september += steps;
+							day = 1;
+							currentMonth = "sep";
+						}
+					}
+					else if (currentMonth == "sep")
+					{
+						if (day != 30)
+						{
+							// add steps to september
+							september += steps;
+							// increase day counter by 1
+							day++;
+						}
+						else
+						{
+							october += steps;
+							day = 1;
+							currentMonth = "oct";
+						}
+					}
+					else if (currentMonth == "oct")
+					{
+						if (day != 31)
+						{
+							// add steps to october
+							october += steps;
+							// increase day counter by 1
+							day++;
+						}
+						else
+						{
+							november += steps;
+							day = 1;
+							currentMonth = "nov";
+						}
+					}
+					else if (currentMonth == "nov")
+					{
+						if (day != 30)
+						{
+							// add steps to november
+							november += steps;
+							// increase day counter by 1
+							day++;
+						}
+						else
+						{
+							december += steps;
+							day = 1;
+							currentMonth = "dec";
+						}
+					}
+					else if (currentMonth == "dec")
+					{
+						if (day != 31)
+						{
+							// add steps to december
+							december += steps;
+							// increase day counter by 1
+							day++;
+						}
+					}
+					else
+					{
+						cout << "Error" << endl;
+					}
+				}
+
+				// output the totals
+				cout << "January : " << january / 31 << endl;
+				cout << "February : " << february / 28<< endl;
+				cout << "March : " << march / 31 << endl;
+				cout << "April : " << april /30 << endl;
+				cout << "May : " << may / 31 << endl;
+				cout << "June : " << june / 30 << endl;
+				cout << "July : " << july / 31<< endl;
+				cout << "August : " << august / 31 << endl;
+				cout << "September : " << september / 30 << endl;
+				cout << "October : " << october / 31 << endl;
+				cout << "November : " << november / 30 << endl;
+				cout << "December : " << december / 31 << endl;
+			}
 			break;
 		}
 		case 6:
-		{
-			cout << "Exercise # - ##";
-
-			// code.
-
-			break;
-		}
-		case 7:
 		{
 			cout << "Quitting..." << endl;
 			break;
 		}
 		}
-	} while (choice < 1 || choice > 7);
+	} while (choice < 1 || choice > 6);
 }
