@@ -362,7 +362,7 @@ int main()
 						if (day != 30)
 						{
 							// add steps to june
-							may += steps;
+							june += steps;
 							// increase day counter by 1
 							day++;
 						}
