@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <string>
 #include <ctime>
+#include <vector>
 #include <fstream>
 
 using namespace std;
@@ -248,22 +249,10 @@ int main()
 			*/
 
 			// initialize variables
-			float day = 0,
-				steps = 0,
-				january = 0,
-				february = 0,
-				march = 0,
-				april = 0,
-				may = 0,
-				june = 0,
-				july = 0,
-				august = 0,
-				september = 0,
-				october = 0,
-				november = 0,
-				december = 0;
-			
-			string currentMonth = "jan";
+			const string MONTHS[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+			const int DAYS[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+			vector<int> month_list = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+			int months, total, day, step, days = 0;
 
 			ifstream infile;
 			infile.open("C:\\Users\\2013565\\Documents\\GitHub\\CPP-2025-2027\\Data Files\\steps.txt");
@@ -275,200 +264,24 @@ int main()
 			}
 			else
 			{	
-				while (infile >> steps)
+				// opens the month
+				for (int& month : month_list)
 				{
-					if (currentMonth == "jan")
-					{
-						if (day != 31)
-						{
-							// add steps to january
-							january += steps;
-							// increase day counter by 1
-							day++;
-						}
-						else
-						{
-							february += steps;
-							day = 1;
-							currentMonth = "feb";
-						}
-					}
-					else if (currentMonth == "feb")
-					{
-						if (day != 28)
-						{
-							// add steps to february
-							february += steps;
-							// increase day counter by 1
-							day++;
-						}
-						else
-						{
-							march += steps;
-							day = 1;
-							currentMonth = "mar";
-						}
-					}
-					else if (currentMonth == "mar")
-					{
-						if (day != 31)
-						{
-							// add steps to march
-							march += steps;
-							// increase day counter by 1
-							day++;
-						}
-						else
-						{
-							april += steps;
-							day = 1;
-							currentMonth = "apr";
-						}
-					}
-					else if (currentMonth == "apr")
-					{
-						if (day != 30)
-						{
-							// add steps to april
-							april += steps;
-							// increase day counter by 1
-							day++;
-						}
-						else
-						{
-							may += steps;
-							day = 1;
-							currentMonth = "may";
-						}
-					}
-					else if (currentMonth == "may")
-					{
-						if (day != 31)
-						{
-							// add steps to may
-							may += steps;
-							// increase day counter by 1
-							day++;
-						}
-						else
-						{
-							june += steps;
-							day = 1;
-							currentMonth = "jun";
-						}
-					}
-					else if (currentMonth == "jun")
-					{
-						if (day != 30)
-						{
-							// add steps to june
-							june += steps;
-							// increase day counter by 1
-							day++;
-						}
-						else
-						{
-							july += steps;
-							day = 1;
-							currentMonth = "jul";
-						}
-					}
-					else if (currentMonth == "jul")
-					{
-						if (day != 31)
-						{
-							// add steps to july
-							july += steps;
-							// increase day counter by 1
-							day++;
-						}
-						else
-						{
-							august += steps;
-							day = 1;
-							currentMonth = "aug";
-						}
-					}
-					else if (currentMonth == "aug")
-					{
-						if (day != 31)
-						{
-							// add steps to august
-							august += steps;
-							// increase day counter by 1
-							day++;
-						}
-						else
-						{
-							september += steps;
-							day = 1;
-							currentMonth = "sep";
-						}
-					}
-					else if (currentMonth == "sep")
-					{
-						if (day != 30)
-						{
-							// add steps to september
-							september += steps;
-							// increase day counter by 1
-							day++;
-						}
-						else
-						{
-							october += steps;
-							day = 1;
-							currentMonth = "oct";
-						}
-					}
-					else if (currentMonth == "oct")
-					{
-						if (day != 31)
-						{
-							// add steps to october
-							october += steps;
-							// increase day counter by 1
-							day++;
-						}
-						else
-						{
-							november += steps;
-							day = 1;
-							currentMonth = "nov";
-						}
-					}
-					else if (currentMonth == "nov")
-					{
-						if (day != 30)
-						{
-							// add steps to november
-							november += steps;
-							// increase day counter by 1
-							day++;
-						}
-						else
-						{
-							december += steps;
-							day = 1;
-							currentMonth = "dec";
-						}
-					}
-					else if (currentMonth == "dec")
-					{
-						if (day != 31)
-						{
-							// add steps to december
-							december += steps;
-							// increase day counter by 1
-							day++;
-						}
-					}
-					else
-					{
-						cout << "Error" << endl;
-					}
-				}
+					days = month;
 
+					// loops and removes each day from the months counter
+					while (month != 0)
+					{
+						infile >> step;
+						total += step;
+						month--;
+					}
+
+					// output the month
+					cout << MONTHS[days] << " : " << total / DAYS[days];
+				}
+			}
+			/*
 				// output the totals
 				cout << "January : " << january / 31 << endl;
 				cout << "February : " << february / 28<< endl;
@@ -483,7 +296,9 @@ int main()
 				cout << "November : " << november / 30 << endl;
 				cout << "December : " << december / 31 << endl;
 			}
-			break;
+			*/
+
+		break;
 		}
 		case 6:
 		{
