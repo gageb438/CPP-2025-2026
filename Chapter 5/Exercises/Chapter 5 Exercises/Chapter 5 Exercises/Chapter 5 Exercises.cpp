@@ -67,6 +67,14 @@ int main()
 				cin >> choice;
 
 				// evaluate
+				// validate first
+				while (choice > MAX_NUMBER or choice < MIN_NUMBER)
+				{
+					cout << "Invalid choice." << endl;
+					cout << "Guess again: ";
+					cin >> choice;
+				}
+
 				if (choice < NUMBER)
 				{
 					cout << "Too low, try again." << endl;
@@ -251,8 +259,8 @@ int main()
 			// initialize variables
 			const string MONTHS[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 			const int DAYS[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-			vector<int> month_list = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-			int months, total, day, step, days = 0;
+			int step, monthc = 0;
+			double total = 0.0, days = 0.0;
 
 			ifstream infile;
 			infile.open("C:\\Users\\2013565\\Documents\\GitHub\\CPP-2025-2027\\Data Files\\steps.txt");
@@ -263,40 +271,27 @@ int main()
 				break;
 			}
 			else
-			{	
+			{
 				// opens the month
-				for (int& month : month_list)
+				for (int month : DAYS)
 				{
 					days = month;
 
 					// loops and removes each day from the months counter
-					while (month != 0)
+					while (days != 0)
 					{
 						infile >> step;
 						total += step;
-						month--;
+						days--;
 					}
 
 					// output the month
-					cout << MONTHS[days] << " : " << total / DAYS[days];
+					cout << MONTHS[monthc] << " : " << total / month << endl;
+					monthc++;
+					total = 0;
+					step = 0;
 				}
 			}
-			/*
-				// output the totals
-				cout << "January : " << january / 31 << endl;
-				cout << "February : " << february / 28<< endl;
-				cout << "March : " << march / 31 << endl;
-				cout << "April : " << april /30 << endl;
-				cout << "May : " << may / 31 << endl;
-				cout << "June : " << june / 30 << endl;
-				cout << "July : " << july / 31<< endl;
-				cout << "August : " << august / 31 << endl;
-				cout << "September : " << september / 30 << endl;
-				cout << "October : " << october / 31 << endl;
-				cout << "November : " << november / 30 << endl;
-				cout << "December : " << december / 31 << endl;
-			}
-			*/
 
 		break;
 		}
@@ -306,5 +301,5 @@ int main()
 			break;
 		}
 		}
-	} while (choice < 1 || choice > 6);
+	} while (choice != 6);
 }
