@@ -179,3 +179,4 @@ double payCalculator(double hours)
 		return (BASE_HOURS * PAY_RATE);
 	}
 }
+
