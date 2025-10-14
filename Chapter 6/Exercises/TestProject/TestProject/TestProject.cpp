@@ -20,7 +20,7 @@ int main()
 	double carfees;
 	cout << "carfees: ";
 	cin >> carfees;
-	
+		
 	double parking;
 	cout << "parking: ";
 	cin >> parking;
