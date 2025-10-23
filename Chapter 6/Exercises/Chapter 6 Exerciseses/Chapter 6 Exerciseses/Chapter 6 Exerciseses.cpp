@@ -10,6 +10,8 @@ int findLowest(int, int, int, int, int);
 void overloadedHospital();
 double getTotal(double, double);
 double getTotal(double, double, double, double);
+void populationGrowth();
+int populationCounter(double, double, double);
 
 /*
 Main accepts no arguments
@@ -31,6 +33,7 @@ int main()
 		cout << "3. Population" << endl;
 		cout << "4. RPSLS" << endl;
 		cout << "5. Quit" << endl;
+		cout << ":> ";
 
 		// input and validate
 		cin >> choice;
@@ -52,8 +55,16 @@ int main()
 			overloadedHospital();
 			break;
 		}
+		case 3:
+		{
+			populationGrowth();
+			break;
 		}
-	} while (choice != 6);
+		case 5:
+			cout << "Thank you for using xercise selector!" << endl;
+			return 0;
+		}
+	} while (choice != 5);
 }
 
 // LOWEST SCORE FUNCTIONS
@@ -114,7 +125,7 @@ void calcAvg(int score1, int score2, int score3, int score4, int score5)
 	int lowest = findLowest(score1, score2, score3, score4, score5);
 	total -= lowest;
 
-	cout << "The average of the 5 scores, after dropping the lowest, is: " << total / 4;
+	cout << "The average of the 5 scores, after dropping the lowest, is: " << total / 4 << endl;
 }
 
 /*
@@ -164,19 +175,20 @@ void overloadedHospital()
 	// initialize variables
 	char patientType = 'a';
 	double medicationCharges,
-		otherCharges;
+		otherCharges,
+		total;
 
 	// header
-	cout << "This program will compute patient hospital charges" << endl;
+	cout << endl << "This program will compute patient hospital charges" << endl;
 	cout << "What was the patient type?" << endl;
-	cout << "In-Patient or Out-Patient? (I or O) : ";
 
 	// validate and take input.
-	while (patientType != 'I' || patientType != 'O')
+	do
 	{
-		cin.get(patientType);
+		cout << "In-Patient or Out-Patient? (I or O) : ";
+		cin >> patientType;
 		cin.ignore();
-	}
+	} while (patientType != 'I' && patientType != 'O');
 
 	if (patientType == 'I')
 	{
@@ -186,17 +198,25 @@ void overloadedHospital()
 		cin >> days;
 		cout << "Daily room rate: $";
 		cin >> roomRate;
-	}
+		cout << "Medication charges: $";
+		cin >> medicationCharges;
+		cout << "Lab fees and other service charges: $";
+		cin >> otherCharges;
 
-	cout << "Medication charges: $";
-	cin >> medicationCharges;
-	cout << "Lab fees and other service charges: $";
-	cin >> otherCharges;
-
-	if (patientType == 'I')
-	{
 		cout << endl;
+		total = getTotal(days, roomRate, medicationCharges, otherCharges);
 	}
+	else
+	{
+		cout << "Medication charges: $";
+		cin >> medicationCharges;
+		cout << "Lab fees and other service charges: $";
+		cin >> otherCharges;
+		cout << endl;
+		total = getTotal(medicationCharges, otherCharges);
+	}
+
+	cout << "The total charges are: $" << total << endl << endl;
 }
 
 double getTotal(double medicationCharges, double otherCharges)
@@ -210,3 +230,47 @@ double getTotal(double days, double roomRate, double medicationCharges, double o
 }
 
 // ####################################
+
+// POPULATION FUNCTIONS
+// ####################################
+
+void populationGrowth()
+{
+	int startingPopulation, years;
+	double birthRate, deathRate;
+	cout << "This program calculates population change." << endl;
+	cout << "Enter the starting population: ";
+	cin >> startingPopulation;
+
+	while (startingPopulation < 2)
+	{
+		cin >> startingPopulation;
+	}
+
+	cout << "Enter the birth rate (as % of the current population) :> ";
+	cin >> birthRate;
+
+	cout << "Enter the death rate (as % of the current population) :> ";
+	cin >> deathRate;
+
+	cout << "For how many years would you like to view the population changes? :> ";
+	cin >> years;
+
+	while (years < 2)
+	{
+		cin >> years;
+	}
+
+	cout << endl << endl;
+
+	for (int yearCounter = 0; yearCounter != years; yearCounter++)
+	{
+		startingPopulation = populationCounter(startingPopulation, birthRate, deathRate);
+		cout << "Population at the end of year " << yearCounter << " is " << startingPopulation << "." << endl;;
+	}
+}
+
+int populationCounter(double startingPopulation, double birthRate, double deathRate)
+{
+	return startingPopulation + ((birthRate / 100) * startingPopulation) - ((deathRate / 100) * startingPopulation);
+}
