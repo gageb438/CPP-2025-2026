@@ -19,6 +19,7 @@ double populationCounter(double, double, double);
 string compChoice();
 string playerChoice();
 void winner(string, string);
+void rplsHandler();
 
 /*
 Main accepts no arguments
@@ -487,4 +488,5 @@ void winner(string playerWeapon, string computerWeapon)
 	{
 		cout << "Error in determining winner.";
 	}
+	cout << endl;
 }
