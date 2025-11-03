@@ -7,12 +7,20 @@ using namespace std;
 void sevOneRe();
 void sevThree();
 void fileRead();
+void sevEight();
+void sevenNine();
+void sevenTen();
+void sevenTwelve();
 
 int main()
 {
 	//sevOneRe();
 	//sevThree();
-	fileRead();
+	//fileRead();
+	//sevEight();
+	//sevenNine();
+	//sevenTen();
+	sevenTwelve();
 
 	return 0;
 }
@@ -82,5 +90,87 @@ void fileRead()
 		}
 
 		cout << endl;
+	}
+}
+
+void sevEight()
+{
+	// init
+	const int SIZE = 10;
+	int numbers[SIZE];
+	int count;
+	ofstream outFile("prog7_8demo.txt");
+
+	for (count = 0; count < SIZE; count++)
+	{
+		numbers[count] = count;
+	}
+	if (!outFile)
+	{
+		cout << "File could not be opened." << endl;
+	}
+	else
+	{
+		for (count = 0; count < SIZE; count++)
+		{
+			outFile << numbers[count] << endl;
+		}
+	}
+
+	// close file
+	outFile.close();
+	cout << "All data written to progr7_8demo.txt" << endl;
+}
+
+void sevenNine()
+{
+	// init
+	const int SIZE = 3;
+	int numbers[SIZE];
+	int count;
+
+	cout << "Storing 5 values in an array of 3 elements." << endl;
+	
+	for (count = 0; count < 5; count++)
+	{
+		numbers[count] = count;
+	}
+	
+	cout << "If the program is still running, output the array." << endl;
+
+	for (count = 0; count < 5; count++)
+	{
+		cout << numbers[count] << endl;
+	}
+
+	cout << "Done!" << endl;
+}
+
+void sevenTen()
+{
+	// init
+	int numbers[] = { 10,20,30,40,50 };
+
+	for (int value : numbers)
+	{
+		cout << value << endl;
+	}
+}
+
+void sevenTwelve()
+{
+	const int SIZE = 5;
+	int numbers[5];
+
+	for (int& value : numbers)
+	{
+		cout << "Enter a number: ";
+		cin >> value;
+	}
+
+	cout << "Here are the values you entered: " << endl;
+	for (int value : numbers)
+	{
+		cout << value << endl;
 	}
 }
