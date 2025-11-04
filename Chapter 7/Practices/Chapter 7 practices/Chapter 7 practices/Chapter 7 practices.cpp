@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -11,6 +12,9 @@ void sevEight();
 void sevenNine();
 void sevenTen();
 void sevenTwelve();
+void sevenFifteen();
+void showvalue(int element);
+void sevenSixteen();
 
 int main()
 {
@@ -20,7 +24,9 @@ int main()
 	//sevEight();
 	//sevenNine();
 	//sevenTen();
-	sevenTwelve();
+	//sevenTwelve();
+	//sevenFifteen();
+	sevenSixteen();
 
 	return 0;
 }
@@ -172,5 +178,49 @@ void sevenTwelve()
 	for (int value : numbers)
 	{
 		cout << value << endl;
+	}
+}
+
+void sevenFifteen()
+{
+	/*
+	Main accepts no arguments
+	it prompts the user for input for
+	and stores in parallel arrays the number of hours worked and the hourly rate
+	it outputs the gross pay = hours * hours worked
+	*/
+	cout << fixed << showpoint << setprecision(2);
+	int hours[5];
+	double rate[5];
+
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "Enter hours worked for employee " << (i + 1) << ": ";
+		cin >> hours[i];
+		cout << "Enter hourly rate for employee " << (i + 1) << ": ";
+		cin >> rate[i];
+	}
+
+	cout << endl << "Gross pay for each employee." << endl;
+
+	for (int count = 0; count < 5; count++)
+	{
+		cout << "Employee " << (count + 1) << ": \t$" << (hours[count] * rate[count]) << endl;
+	}
+}
+
+void showValue(int element)
+{
+	cout << element << " ";
+}
+
+void sevenSixteen()
+{
+	const int SIZE = 8;
+	int numbers[SIZE] = { 5, 10, 15, 20, 25, 30, 35, 40 };
+
+	for (int index = 0; index < SIZE; index++)
+	{
+		showValue(numbers[index]);
 	}
 }
