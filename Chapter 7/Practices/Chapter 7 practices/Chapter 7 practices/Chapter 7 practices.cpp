@@ -13,8 +13,16 @@ void sevenNine();
 void sevenTen();
 void sevenTwelve();
 void sevenFifteen();
-void showvalue(int element);
+void showValue(int element);
 void sevenSixteen();
+void sevenSeventeen();
+void showAllValues(int values[], int size);
+void sevenEighteen();
+void getScores(int scores[], int size);
+double getTotal(int score[], int size);
+double getLowest(int scores[], int size);
+void sevenTwentyOne();
+
 
 int main()
 {
@@ -26,7 +34,9 @@ int main()
 	//sevenTen();
 	//sevenTwelve();
 	//sevenFifteen();
-	sevenSixteen();
+	//sevenSixteen();
+	//sevenEighteen();
+	sevenTwentyOne();
 
 	return 0;
 }
@@ -136,7 +146,7 @@ void sevenNine()
 	int count;
 
 	cout << "Storing 5 values in an array of 3 elements." << endl;
-	
+	/*
 	for (count = 0; count < 5; count++)
 	{
 		numbers[count] = count;
@@ -148,6 +158,7 @@ void sevenNine()
 	{
 		cout << numbers[count] << endl;
 	}
+	*/
 
 	cout << "Done!" << endl;
 }
@@ -223,4 +234,142 @@ void sevenSixteen()
 	{
 		showValue(numbers[index]);
 	}
+}
+
+void sevenSeventeen()
+{
+	const int SIZE = 8;
+	int numbers[SIZE] = { 5, 10, 15, 20, 25, 30, 35, 40 };
+
+	showAllValues(numbers, SIZE);
+}
+
+void showAllValues(int values[], int size)
+{
+	for (int value = 0; value < size; value++)
+	{
+		cout << values[value] << " ";
+	}
+}
+
+void sevenEighteen()
+{
+	/*
+	main accepts no arguments
+	it declares an array with 4 elements
+	it calls getScores, getTotal, and getLowest
+	passing the array and the constant for each size
+	to each function. After the total and lowest score have been determined, it subtracts the lowest from the
+	total and calculates and outputs the average.
+	*/
+
+	const int SIZE = 4;
+	int scores[SIZE];
+	double total, lowest;
+
+	getScores(scores, SIZE);
+	total = getTotal(scores, SIZE);
+	lowest = getLowest(scores, SIZE);
+	total -= lowest;
+
+	cout << "The average of the scores ";
+	showAllValues(scores, SIZE);
+	cout << fixed << showpoint << setprecision(2);
+	cout << "with the lowest score of " << lowest << " dropped is: " << total / (SIZE - 1) << endl;
+}
+
+void getScores(int scores[], int size)
+{
+	/*
+	void getScores accepts an array and its size
+	it prompts the user for 4 test scores
+	and stores them in the array
+	*/
+	for (int count = 0;  count < size; count++)
+	{
+		cout << "Enter score " << (count + 1) << ": ";
+		cin >> scores[count];
+	}
+}
+
+double getTotal(int score[], int size)
+{
+	/*
+	double getTotal accepts an array and its size
+	it totals all elements of an array
+	and returns the total
+	*/
+	double total = 0.0;
+
+	for (int count = 0; count < size; count++)
+	{
+		total += score[count];
+	}
+
+	return total;
+}
+
+double getLowest(int scores[], int size)
+{
+	/*
+	double getLowest accepts an array and its size
+	it determines the lowest value in the array
+	and returns that value
+	*/
+	double lowest = scores[0];
+
+	for (int count = 1; count < size; count++)
+	{
+		if (scores[count] < lowest)
+		{
+			lowest = scores[count];
+		}
+	}
+	return lowest;
+}
+
+void sevenTwentyOne()
+{
+	/*
+	Main accepts no arguments
+	it initializes a 3x4 array
+	3 rows and 4 columns
+	it uses nested loops to input data to the array 
+	and output a total of all elements
+	*/
+
+	// init
+	const int NUM_DIVS = 3;
+	const int NUM_QTRS = 4;
+
+	// initialize the 2d array with 3 rows
+	// and 4 columns
+	double sales[NUM_DIVS][NUM_QTRS];
+	double totalSales = 0;
+	int div = 0, qtr = 0;
+	double sale;
+
+	for (div = 0; div < NUM_DIVS; div++)
+	{
+		for (qtr = 0; qtr < NUM_QTRS; qtr++)
+		{
+			cout << "Enter the sales for division " << (div + 1) << ", quarter " << (qtr + 1) << ": ";
+			cin >> sale;
+
+			sales[div][qtr] = sale;
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+	for (div = 0; div < NUM_DIVS; div++)
+	{
+		for (qtr = 0; qtr < NUM_QTRS; qtr++)
+		{
+			totalSales += sales[div][qtr];
+		}
+	}
+
+	cout << fixed << showpoint << setprecision(2);
+	cout << "The total sales for the company are: $" << totalSales << endl;
 }
