@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ void getScores(int scores[], int size);
 double getTotal(int score[], int size);
 double getLowest(int scores[], int size);
 void sevenTwentyOne();
-
+void sevenTwentyFour();
 
 int main()
 {
@@ -36,7 +37,8 @@ int main()
 	//sevenFifteen();
 	//sevenSixteen();
 	//sevenEighteen();
-	sevenTwentyOne();
+	//sevenTwentyOne();
+	sevenTwentyFour();
 
 	return 0;
 }
@@ -372,4 +374,29 @@ void sevenTwentyOne()
 
 	cout << fixed << showpoint << setprecision(2);
 	cout << "The total sales for the company are: $" << totalSales << endl;
+}
+
+void sevenTwentyFour()
+{
+	const int NUM_EMPLOYEES = 5;
+	vector<int> hours(NUM_EMPLOYEES);
+	vector<double> payRate(NUM_EMPLOYEES);
+	int index;
+
+	cout << "Enter the hours worked by " << NUM_EMPLOYEES << " employees and their hourly rate." << endl;
+
+	for (index = 0; index < NUM_EMPLOYEES; index++)
+	{
+		cout << endl << "Hours worked by employee " << (index + 1) << ": ";
+		cin >> hours[index];
+		cout << endl << "Hourly pay rate for employee " << (index + 1) << ": ";
+		cin >> payRate[index];
+	}
+
+	cout << endl << "Here is the gross pay for each employee: " << endl;
+	for (index = 0; index < NUM_EMPLOYEES; index++)
+	{
+		cout << fixed << showpoint << setprecision(2);
+		cout << "Employee " << (index + 1) << ": $" << (hours[index] * payRate[index]) << endl;
+	}
 }
