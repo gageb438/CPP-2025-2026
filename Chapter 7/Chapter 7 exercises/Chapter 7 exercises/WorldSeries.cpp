@@ -14,7 +14,6 @@ void World_Series()
 	vector<int> Win_List;
 	string Team_Name;
 	string line;
-	int counter = 0;
 
 	if (!Teams)
 	{
@@ -30,15 +29,14 @@ void World_Series()
 	while (getline(Teams, line))
 	{
 		cout << line << endl;
-		Team_List[counter] = line;
-		counter++;
+		Team_List.push_back(line);
 	}
 
 	cout << endl;
 	cout << "Enter the name of one of the teams: ";
 	cin >> Team_Name;
 
-	if (find(Team_List.begin(), Team_List.end(), Team_Name))
+	if (find(Team_List.begin(), Team_List.end(), Team_Name) != Team_List.end())
 	{
 
 	}
