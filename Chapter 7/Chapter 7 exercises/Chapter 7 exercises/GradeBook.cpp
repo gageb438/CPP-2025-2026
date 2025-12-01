@@ -42,7 +42,7 @@ void Grade_Book()
 
 		double avg = ((Grades[person][0]) + (Grades[person][1]) + (Grades[person][2]) + (Grades[person][3])) / 4;
 
-		cout << "Average: " << avg;
+		cout << "Average: " << avg << endl;
 		if (avg >= 90)
 		{
 			cout << "Grade: A";
@@ -63,6 +63,6 @@ void Grade_Book()
 		{
 			cout << "Grade: F";
 		}
-		cout << endl;
+		cout << endl << endl;
 	}
 }

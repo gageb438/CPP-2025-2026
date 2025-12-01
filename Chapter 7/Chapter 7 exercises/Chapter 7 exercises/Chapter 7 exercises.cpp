@@ -4,11 +4,26 @@ using namespace std;
 
 int menu(int programs);
 void Grade_Book();
+void World_Series();
 
 int main()
 {
-	//int num = menu(6);
-	//cout << num;
-	
-	Grade_Book();
+	int num = 9;
+
+	do
+	{
+		num = menu(6);
+
+		switch (num)
+		{
+		case 1:
+		{
+			Grade_Book();
+			break;
+		}
+		case 2:
+			World_Series();
+			break;
+		}
+	} while (num < 6);
 }
