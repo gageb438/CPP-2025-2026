@@ -6,8 +6,6 @@
 
 using namespace std;
 
-int Finder(string ToFind, vector<string> Array);
-
 void World_Series()
 {
 	ifstream Teams("C:\\Users\\2013565\\Documents\\GitHub\\CPP-2025-2027\\Chapter 7\\Chapter 7 exercises\\Teams.txt");
@@ -39,35 +37,22 @@ void World_Series()
 
 	while (getline(Winners, line))
 	{
-		int pos = Finder(line, Team_List);
+		auto pos = find(Team_List.begin(), Team_List.end(), line);
 		Win_List[pos] += 1;
 	}
+
 	Winners.close();
 
 	cout << endl;
 	cout << "Enter the name of one of the teams: ";
 	cin >> Team_Name;
 
-	while (Finder(Team_Name, Team_List) == -1)
+	while (find(Team_List.begin(), Team_List.end(), Team_Name) != Team_List.end())
 	{
 		cout << endl << "Enter the name of one of the teams: ";
 		cin >> Team_Name;
 	}
 
-	int Pos = Finder(Team_Name, Team_List);
+	auto Pos = find(Win_List.begin(), Win_List.end(), Team_Name);
 	cout << "The " << Team_Name << " have won the World Series " << Win_List[Pos] << " times between 1903 and 2012." << endl;
-}
-
-int Finder(string ToFind, vector<string> Array)
-{
-	for (int Count = 0; Count < Array.size(); Count++)
-	{
-		
-		if (ToFind == Array[Count])
-		{
-			return Count;
-		}
-	}
-
-	return -1;
 }
