@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -56,3 +57,4 @@ void World_Series()
 	auto Pos = find(Win_List.begin(), Win_List.end(), Team_Name);
 	cout << "The " << Team_Name << " have won the World Series " << Win_List[Pos] << " times between 1903 and 2012." << endl;
 }
+*/
