@@ -5,6 +5,7 @@ using namespace std;
 int menu(int programs);
 void Grade_Book();
 //void World_Series();
+void Eight_Ball();
 void Tic_Tac_Main();
 
 int main()
@@ -13,7 +14,7 @@ int main()
 
 	do
 	{
-		num = menu(6);
+		num = menu(5);
 
 		switch (num)
 		{
@@ -31,6 +32,14 @@ int main()
 		{
 			Tic_Tac_Main();
 			break;
+		}
+		case 4:
+		{
+			Eight_Ball();
+		}
+		case 5:
+		{
+
 		}
 		}
 	} while (num < 6);
