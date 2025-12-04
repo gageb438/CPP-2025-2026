@@ -35,12 +35,14 @@ void Grade_Book()
 	for (int person = 0; person < 5; person++)
 	{
 		cout << "Name: " << Names[person] << endl;
-		cout << "Test 1: " << Grades[person][0] << endl;
-		cout << "Test 2: " << Grades[person][1] << endl;
-		cout << "Test 3: " << Grades[person][2] << endl;
-		cout << "Test 4: " << Grades[person][3] << endl;
-
-		double avg = ((Grades[person][0]) + (Grades[person][1]) + (Grades[person][2]) + (Grades[person][3])) / 4;
+		
+		double avg = 0;
+		for (int test = 0; test < 4; test++)
+		{
+			cout << "Test " << test + 1 << ": " << Grades[person][test] << endl;
+			avg += Grades[person][test];
+		}
+		avg /= 4;
 
 		cout << "Average: " << avg << endl;
 		if (avg >= 90)

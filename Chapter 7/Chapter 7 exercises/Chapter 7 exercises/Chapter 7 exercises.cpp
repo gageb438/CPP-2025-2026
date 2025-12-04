@@ -36,6 +36,7 @@ int main()
 		case 4:
 		{
 			Eight_Ball();
+			break;
 		}
 		case 5:
 		{

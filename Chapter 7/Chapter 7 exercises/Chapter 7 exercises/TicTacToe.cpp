@@ -84,80 +84,38 @@ void Output_Board(char Board[3][3])
 
 char Find_Winner(char Board[3][3])
 {
-    if (Board[0][0] == Board[0][1] && Board[0][1] == Board[0][2] && Board[0][0] != '*')
+    // Check rows
+    for (int i = 0; i < 3; i++)
+    {
+        if (Board[i][0] == Board[i][1] && Board[i][1] == Board[i][2] && Board[i][0] != '*')
+        {
+            return Board[i][0];
+        }
+    }
+    
+    // Check columns
+    for (int i = 0; i < 3; i++)
+    {
+        if (Board[0][i] == Board[1][i] && Board[1][i] == Board[2][i] && Board[0][i] != '*')
+        {
+            return Board[0][i];
+        }
+    }
+    
+    // Check diagonals
+    if (Board[0][0] == Board[1][1] && Board[1][1] == Board[2][2] && Board[0][0] != '*')
     {
         return Board[0][0];
     }
-    else if (Board[1][0] == Board[1][1] && Board[1][1] == Board[1][2] && Board[1][0] != '*')
-    {
-        return Board[1][0];
-    }
-    else if (Board[2][0] == Board[2][1] && Board[2][1] == Board[2][2] && Board[2][0] != '*')
-    {
-        return Board[2][0];
-    }
-    else if (Board[0][0] == Board[1][0] && Board[1][0] == Board[2][0] && Board[0][0] != '*')
-    {
-        return Board[0][0];
-    }
-    else if (Board[0][1] == Board[1][1] && Board[1][1] == Board[2][1] && Board[0][1] != '*')
-    {
-        return Board[0][1];
-    }
-    else if (Board[0][2] == Board[1][2] && Board[1][2] == Board[2][2] && Board[0][2] != '*')
+    if (Board[0][2] == Board[1][1] && Board[1][1] == Board[2][0] && Board[0][2] != '*')
     {
         return Board[0][2];
     }
-    else if (Board[0][0] == Board[1][1] && Board[1][1] == Board[2][2] && Board[0][0] != '*')
-    {
-        return Board[0][0];
-    }
-    else if (Board[0][2] == Board[1][1] && Board[1][1] == Board[2][0] && Board[0][2] != '*')
-    {
-        return Board[0][2];
-    }   
-    else
-    {
-        return 'T';
-    }
+    
+    return 'T';
 }
 
 bool Game_Over(char Board[3][3])
 {
-    if (Board[0][0] == Board[0][1] && Board[0][1] == Board[0][2] && Board[0][0] != '*')
-    {
-        return true;
-    }
-    else if (Board[1][0] == Board[1][1] && Board[1][1] == Board[1][2] && Board[1][0] != '*')
-    {
-        return true;
-    }
-    else if (Board[2][0] == Board[2][1] && Board[2][1] == Board[2][2] && Board[2][0] != '*')
-    {
-        return true;
-    }
-    else if (Board[0][0] == Board[1][0] && Board[1][0] == Board[2][0] && Board[0][0] != '*')
-    {
-        return true;
-    }
-    else if (Board[0][1] == Board[1][1] && Board[1][1] == Board[2][1] && Board[0][1] != '*')
-    {
-        return true;
-    }
-    else if (Board[0][2] == Board[1][2] && Board[1][2] == Board[2][2] && Board[0][2] != '*')
-    {
-        return true;
-    }
-    else if (Board[0][0] == Board[1][1] && Board[1][1] == Board[2][2] && Board[0][0] != '*')
-    {
-        return true;
-    }
-    else if (Board[0][2] == Board[1][1] && Board[1][1] == Board[2][0] && Board[0][2] != '*')
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return Find_Winner(Board) != 'T';
 }

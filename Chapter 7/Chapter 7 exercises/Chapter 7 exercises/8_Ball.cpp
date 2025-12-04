@@ -44,9 +44,7 @@ void Eight_Ball()
 
         if (Question == "stop") { return; }
 
-        int choice = rand() % (Response_List.size() + 1);
-
-        cout << choice << endl;
+        int choice = rand() % Response_List.size();
         
         cout << Response_List[choice] << endl;
     }
