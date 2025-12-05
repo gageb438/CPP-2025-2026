@@ -4,9 +4,10 @@ using namespace std;
 
 int menu(int programs);
 void Grade_Book();
-//void World_Series();
+void World_Series();
 void Eight_Ball();
 void Tic_Tac_Main();
+void Average_Gas_Prices();
 
 int main()
 {
@@ -25,7 +26,7 @@ int main()
 		}
 		case 2:
 		{
-			//World_Series();
+			World_Series();
 			break;
 		}
 		case 3:
@@ -36,10 +37,12 @@ int main()
 		case 4:
 		{
 			Eight_Ball();
+			break;
 		}
 		case 5:
 		{
-
+			Average_Gas_Prices();
+			break;
 		}
 		}
 	} while (num < 6);

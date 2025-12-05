@@ -15,7 +15,7 @@ void Eight_Ball()
     ifstream Responses("C:\\Users\\2013565\\Documents\\GitHub\\CPP-2025-2027\\Chapter 7\\Chapter 7 exercises\\8_ball_responses.txt");
     vector<string> Response_List = {};
 
-    string Line, Question;
+    string Line;
 
     srand(static_cast<unsigned int>(time(0)));
     
@@ -36,18 +36,14 @@ void Eight_Ball()
     }
 
     // prompt for if they should do something
-    while (true)
-    {
-        cout << "Question('stop' to stop) : ";
-        cin.ignore();
-        getline(cin, Question);
+    string Question;
 
-        if (Question == "stop") { return; }
+    cout << "Question: ";
 
-        int choice = rand() % (Response_List.size() + 1);
+    cin.ignore();
+    getline(cin, Question);
+    
+    int choice = rand() % (Response_List.size());
 
-        cout << choice << endl;
-        
-        cout << Response_List[choice] << endl;
-    }
+    cout << Response_List[choice] << endl;
 }
