@@ -49,12 +49,16 @@ void World_Series()
 	string Team_Choice;
 	bool Found = false;
 
-	do
+	while (true);
 	{
 		cout << "Enter the name of a team to search for: ";
 		cin.ignore();
 		getline(cin, Team_Choice);
 
+		if (Team_Choice == "Quit")
+		{
+			return;
+		}
 		for (int Index = 0; Index < Team_List.size(); Index++)
 		{
 			if (Team_Choice == Team_List[Index])
@@ -67,5 +71,5 @@ void World_Series()
 		{
 			cout << "Invalid input." << endl;
 		}
-	} while (Team_Choice != "Quit");
+	}
 }
