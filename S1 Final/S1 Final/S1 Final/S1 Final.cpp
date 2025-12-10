@@ -2,9 +2,13 @@
 
 using namespace std;
 
-void Intro();
+string Intro();
 
 int main()
 {
-	Intro();
+	string Player = Intro();
+
+
+
+	return 0;
 }
