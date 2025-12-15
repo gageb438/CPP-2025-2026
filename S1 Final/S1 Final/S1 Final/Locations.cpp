@@ -16,8 +16,10 @@ void Player_Message(string Person, string Message, int Message_Wait);
 void Non_Player_Message(string Message, int Message_Wait);
 void Interface_Introduction();
 
-
+//###########################
 const bool QUICK_SKIP = true;
+//###########################
+
 
 string Intro1()
 {
@@ -188,7 +190,7 @@ void Interface_Introduction()
 		cout << "If you need to get the description of the room/whats happening, type info" << endl;
 		cout << "For a valid list of commands, type cmd" << endl;
 		cout << "You are expected to type a valid password of: " << "'th@t5_t00_3a5y'" << " to prove your brain is not wires and metals, and that you did this atleast once." << endl;
-
+		cout << "Enter the password: " << endl;
 		while (Captcha != "th@t5_t00_3a5y")
 		{
 			cout << ":> ";
@@ -199,6 +201,7 @@ void Interface_Introduction()
 	}
 	else
 	{
+		cout << "Enter the password: " << endl;
 		while (Captcha != "th@t5_t00_3a5y")
 		{
 			cout << ":> ";

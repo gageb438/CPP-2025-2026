@@ -4,6 +4,7 @@ using namespace std;
 
 string Intro1();
 string Intro2(string Role);
+string Medic(string Name);
 
 int main()
 {
@@ -12,7 +13,7 @@ int main()
 
 	if (Role == "medic")
 	{
-
+		Medic(Name);
 	}
 	return 0;
 }
