@@ -14,6 +14,6 @@ int main()
 	if (Role == "medic")
 	{
 		Medic(Name);
-	}
+	}	
 	return 0;
 }

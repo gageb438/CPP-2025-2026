@@ -17,7 +17,7 @@ void Non_Player_Message(string Message, int Message_Wait);
 void Interface_Introduction();
 
 //###########################
-const bool QUICK_SKIP = true;
+const bool QUICK_SKIP = false;
 //###########################
 
 
@@ -26,7 +26,7 @@ string Intro1()
 	if (!QUICK_SKIP)
 	{
 		cout << RED;
-		Non_Player_Message("An alarm blares in the background...", 1000);
+		Non_Player_Message("An alarm blares in the background...", 4000);
 		cout << RESET;
 
 		Non_Player_Message("You awaken in a dark environment, an announcement awaking you.", 2000);
@@ -191,23 +191,11 @@ void Interface_Introduction()
 		cout << "For a valid list of commands, type cmd" << endl;
 		cout << "You are expected to type a valid password of: " << "'th@t5_t00_3a5y'" << " to prove your brain is not wires and metals, and that you did this atleast once." << endl;
 		cout << "Enter the password: " << endl;
-		while (Captcha != "th@t5_t00_3a5y")
-		{
-			cout << ":> ";
-			cin >> Captcha;
-		}
 
 		return;
 	}
 	else
 	{
-		cout << "Enter the password: " << endl;
-		while (Captcha != "th@t5_t00_3a5y")
-		{
-			cout << ":> ";
-			cin >> Captcha;
-		}
-
 		return;
 	}
 }
