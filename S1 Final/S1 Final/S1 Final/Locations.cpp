@@ -174,7 +174,6 @@ string Medic(string Name)
 void Interface_Introduction()
 {
 	char Choice;
-	string Captcha;
 
 	cout << "(Interface Tutorial)" << endl;
 	cout << "Would you like to begin the tutorial?" << endl;
@@ -189,24 +188,11 @@ void Interface_Introduction()
 		cout << "At any point if you would like to quit, type 'QUIT'. Commands are case sensitive." << endl;
 		cout << "If you need to get the description of the room/whats happening, type info" << endl;
 		cout << "For a valid list of commands, type cmd" << endl;
-		cout << "You are expected to type a valid password of: " << "'th@t5_t00_3a5y'" << " to prove your brain is not wires and metals, and that you did this atleast once." << endl;
-		cout << "Enter the password: " << endl;
-		while (Captcha != "th@t5_t00_3a5y")
-		{
-			cout << ":> ";
-			cin >> Captcha;
-		}
-
+		
 		return;
 	}
 	else
 	{
-		cout << "Enter the password: " << endl;
-		while (Captcha != "th@t5_t00_3a5y")
-		{
-			cout << ":> ";
-			cin >> Captcha;
-		}
 
 		return;
 	}
