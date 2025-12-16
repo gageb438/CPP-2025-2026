@@ -162,7 +162,8 @@ string Intro2(string Role)
 string Medic(string Name)
 {
 	cout << endl << "You stand up from the terminal." << endl;
-	cout << "You grab your uniform, medkit, and shield applicator." << endl;
+	Non_Player_Message("You grab your uniform, and put it on.", 1500);
+	cout << endl << endl;
 
 	cout << "There is 500 souls on this ship. The majority is heavily injured." << endl;
 	cout << "Your goal is to save everyone you can." << endl;
