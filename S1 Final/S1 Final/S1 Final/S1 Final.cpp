@@ -11,9 +11,7 @@ int main()
 	string Role = Intro1();
 	string Name = Intro2(Role);
 
-	if (Role == "medic")
-	{
-		Medic(Name);
-	}
+	Medic(Name);
+	
 	return 0;
 }

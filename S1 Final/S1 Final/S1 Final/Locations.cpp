@@ -97,7 +97,7 @@ string Intro1()
 		cout << "Terminal - The ship's crew is actively dying." << endl;
 		cout << "Terminal - What role will you take up?" << endl;
 		cout << RESET;
-		cout << "-- (Choices: Captain / Engineer / Medic / Security) --" << endl;
+		cout << "-- (Choices: C̶a̶p̶t̶a̶i̶n̶ / E̶n̶g̶i̶n̶e̶e̶r̶ / Medic / S̶e̶c̶u̶r̶i̶t̶y̶) --" << endl;
 
 		string Role;
 		cout << ":> ";
@@ -105,7 +105,7 @@ string Intro1()
 
 		transform(Role.begin(), Role.end(), Role.begin(), [](unsigned char c) { return tolower(c); });
 
-		while (Role != "captain" && Role != "engineer" && Role != "medic" && Role != "security")
+		while (Role != /*"captain" && Role != "engineer" && Role != */"medic" /*&& Role != "security"*/)
 		{
 			cout << endl;
 			cout << "Computing..." << endl;
