@@ -298,7 +298,7 @@ void Scene_Medic2(string Name)
 	Non_Player_Message("What do you do?", 1500);
 
 	cout << ":> ";
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cin.ignore(9999, '\n');
 	getline(cin, Command);
 	transform(Command.begin(), Command.end(), Command.begin(), [](unsigned char c) { return tolower(c); });
 
@@ -367,7 +367,7 @@ int Scene_Medic3(string Name)
 	Non_Player_Message("Who do you pick?", 1500);
 
 	cout << ":> ";
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	cin.ignore(9999, '\n');
 	getline(cin, Command);
 	transform(Command.begin(), Command.end(), Command.begin(), [](unsigned char c) { return tolower(c); });
 
