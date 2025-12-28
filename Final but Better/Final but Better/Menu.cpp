@@ -102,7 +102,6 @@ void Menu()
 		case 1:
 		{
 			// unfinished
-
 			break;
 		}
 		case 2:
@@ -118,7 +117,7 @@ void Menu()
 		case 4:
 		{
 			// sad to see them go, woudl've loved the feedback (why do i write these comments)
-			cout << endl << GREEN << "Thank you for playing The Quiet War!" << RESET << endl << endl;
+			cout << endl << GREEN << "Thank you for playing The False Star!" << RESET << endl << endl;
 			exit(0);
 			cout << "if you see this just shut your console, idk why it didnt work.";
 		}
