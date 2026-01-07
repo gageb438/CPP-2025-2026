@@ -2,17 +2,17 @@
 
 using namespace std;
 
-int QuickSort(int Long_Array[], int Start, int End);
-void LinearChargeAccountValidation();
-void BinaryChargeAccountValidation();
-
+void Linear_Charge_Account_Validation();
+void Binary_Charge_Account_Validation();
+void Swap(int& Pos1, int& Pos2);
+void Bubble_Sort(int Long_Array[], int Size);
 
 int main()
 {
-	LinearChargeAccountValidation();
+	Binary_Charge_Account_Validation();
 }
 
-void LinearChargeAccountValidation()
+void Linear_Charge_Account_Validation()
 {
 	int ACCOUNT_NUMBERS[18] = { 5658845, 4520125, 7895122, 8777541, 8451277, 1302850, 8080152, 4562555, 5552012, 5050552, 7825877, 1250255, 1005231, 6545231, 3852085, 7576651, 7881200, 4581002 };
 
@@ -51,49 +51,64 @@ void LinearChargeAccountValidation()
 	}
 }
 
-void BinaryChargeAccountValidation()
+void Binary_Charge_Account_Validation()
 {
 	int ACCOUNT_NUMBERS[18] = { 5658845, 4520125, 7895122, 8777541, 8451277, 1302850, 8080152, 4562555, 5552012, 5050552, 7825877, 1250255, 1005231, 6545231, 3852085, 7576651, 7881200, 4581002 };
 
 	// sorting
+	Bubble_Sort(ACCOUNT_NUMBERS, 18);
 
-	while (true)
+	bool Found = false;
+	int Pivot = 9;
+	int UserID;
+	int Low = 0;
+	int High = 17;
+
+	cout << "Enter your Account ID to look for : ";
+	cin >> UserID;
+
+	while (Low <= High)
 	{
-		bool Found = false;
-		int Users_Number;
+		int Size = (Low + High) / 2;
 
-		cout << "Input your account number to search for (1111111 to quit.) :> ";
-		cin >> Users_Number;
-
-		if (Users_Number == 1111111)
+		if (UserID == ACCOUNT_NUMBERS[Size])
 		{
+			cout << "Account ID valid." << endl;;
 			return;
 		}
+		else if (UserID < ACCOUNT_NUMBERS[Size])
+		{
+			High = Size - 1;
+		}
 		else
 		{
-			for (int Pos = 0; Pos < 18; Pos++)
-			{
-				if (ACCOUNT_NUMBERS[Pos] == Users_Number)
-				{
-					Found = true;
-					break;
-				}
-			}
+			Low = Size + 1;
 		}
+	}
+	cout << "Account ID invalid." << endl;
+	return;
+}
 
-		if (Found)
+void Bubble_Sort(int Long_Array[], int Size)
+{
+	int Max_Element;
+	int Index;
+
+	for (Max_Element = Size - 1; Max_Element > 0; Max_Element--)
+	{
+		for (Index = 0; Index < Max_Element; Index++)
 		{
-			cout << "Your account number is valid." << endl;;
-		}
-		else
-		{
-			cout << "Your account number is invalid." << endl;
+			if (Long_Array[Index] > Long_Array[Index + 1])
+			{
+				Swap(Long_Array[Index], Long_Array[Index + 1]);
+			}
 		}
 	}
 }
 
-int QuickSort(int Long_Array[], int Start, int End)
+void Swap(int& Pos1, int& Pos2)
 {
-
-	return 0;
+	int Temporary = Pos1;
+	Pos1 = Pos2;
+	Pos2 = Temporary;
 }
