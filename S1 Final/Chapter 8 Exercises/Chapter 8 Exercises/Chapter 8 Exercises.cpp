@@ -6,6 +6,7 @@ void Linear_Charge_Account_Validation();
 void Binary_Charge_Account_Validation();
 void Swap(int& Pos1, int& Pos2);
 void Bubble_Sort(int Long_Array[], int Size);
+void Selection_Sort(int Long_Array[], int Size);
 
 int main()
 {
@@ -55,38 +56,46 @@ void Binary_Charge_Account_Validation()
 {
 	int ACCOUNT_NUMBERS[18] = { 5658845, 4520125, 7895122, 8777541, 8451277, 1302850, 8080152, 4562555, 5552012, 5050552, 7825877, 1250255, 1005231, 6545231, 3852085, 7576651, 7881200, 4581002 };
 
-	// sorting
-	Bubble_Sort(ACCOUNT_NUMBERS, 18);
-
-	bool Found = false;
-	int Pivot = 9;
-	int UserID;
-	int Low = 0;
-	int High = 17;
-
-	cout << "Enter your Account ID to look for : ";
-	cin >> UserID;
-
-	while (Low <= High)
+	Selection_Sort(ACCOUNT_NUMBERS, 18);
+	while (true)
 	{
-		int Size = (Low + High) / 2;
+		bool Found = false;
+		int Pivot = 9;
+		int UserID;
+		int Low = 0;
+		int High = 17;
 
-		if (UserID == ACCOUNT_NUMBERS[Size])
+		cout << "Enter your Account ID to look for : ";
+		cin >> UserID;
+
+		while (Low <= High)
 		{
-			cout << "Account ID valid." << endl;;
+			int Size = (Low + High) / 2;
+
+			if (UserID == ACCOUNT_NUMBERS[Size])
+			{
+				cout << "Account ID valid." << endl;
+				Found = true;
+				break;
+			}
+			else if (UserID < ACCOUNT_NUMBERS[Size])
+			{
+				High = Size - 1;
+			}
+			else
+			{
+				Low = Size + 1;
+			}
+		}
+		if (UserID == 1111111)
+		{
 			return;
 		}
-		else if (UserID < ACCOUNT_NUMBERS[Size])
+		else if (!Found)
 		{
-			High = Size - 1;
-		}
-		else
-		{
-			Low = Size + 1;
+			cout << "Account ID invalid." << endl;
 		}
 	}
-	cout << "Account ID invalid." << endl;
-	return;
 }
 
 void Bubble_Sort(int Long_Array[], int Size)
@@ -106,9 +115,56 @@ void Bubble_Sort(int Long_Array[], int Size)
 	}
 }
 
+void Selection_Sort(int Long_Array[], int Size)
+{
+	int Min;
+
+	for (int Position = 0; Position < Size; Position++)
+	{
+		Min = Position;
+
+		for (int Checking = Position + 1; Checking < Size; Checking++)
+		{
+			if (Long_Array[Checking] <= Long_Array[Min])
+			{
+				Min = Checking;
+			}
+		}
+
+		Swap(Long_Array[Min], Long_Array[Position]);
+	}
+}
+
+void Selection_Sort(string Long_Array[], int Size)
+{
+	int Min;
+
+	for (int Position = 0; Position < Size; Position++)
+	{
+		Min = Position;
+
+		for (int Checking = Position + 1; Checking < Size; Checking++)
+		{
+			if (Long_Array[Checking] <= Long_Array[Min])
+			{
+				Min = Checking;
+			}
+		}
+
+		Swap(Long_Array[Min], Long_Array[Position]);
+	}
+}
+
 void Swap(int& Pos1, int& Pos2)
 {
 	int Temporary = Pos1;
+	Pos1 = Pos2;
+	Pos2 = Temporary;
+}
+
+void Swap(string& Pos1, string& Pos2)
+{
+	string Temporary = Pos1;
 	Pos1 = Pos2;
 	Pos2 = Temporary;
 }
