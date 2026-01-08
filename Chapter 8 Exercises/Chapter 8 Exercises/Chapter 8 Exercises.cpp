@@ -1,16 +1,20 @@
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
 void Linear_Charge_Account_Validation();
 void Binary_Charge_Account_Validation();
+void String_Selection_Sort();
 void Swap(int& Pos1, int& Pos2);
+void Swap(string& Pos1, string& Pos2);
 void Bubble_Sort(int Long_Array[], int Size);
 void Selection_Sort(int Long_Array[], int Size);
+void Selection_Sort(string Long_Array[], int Size);
 
 int main()
 {
-	Binary_Charge_Account_Validation();
+	String_Selection_Sort();
 }
 
 void Linear_Charge_Account_Validation()
@@ -98,6 +102,21 @@ void Binary_Charge_Account_Validation()
 	}
 }
 
+void String_Selection_Sort()
+{
+	string Names[] = { "Venkman, Peter", "Took, Peregrin", "Pinkman, Jesse", "Simpson, Bart", "Allen, Tom", "McFly, Marty", "Solo, Han", "Baggins, Bilbo", "Griffin, Peter", "White, Walter", "Organa, Leia", "Brown, Emmet", "Fudd, Elmer", "Uzumaki, Naruto", "Skywalker, Luke", "Jones, Indiana", "Callahan, Harold", "Gamgee, Samwise", "Fring, Gustavo", "Kenobi, Ben" };
+	ofstream Sorted_Names("sortednames.txt");
+	
+	Selection_Sort(Names, 20);
+	
+	for (int pos = 0; pos < 20; pos++)
+	{
+		Sorted_Names << Names[pos] << endl;
+	}
+
+	Sorted_Names.close();
+}
+
 void Bubble_Sort(int Long_Array[], int Size)
 {
 	int Max_Element;
@@ -145,7 +164,7 @@ void Selection_Sort(string Long_Array[], int Size)
 
 		for (int Checking = Position + 1; Checking < Size; Checking++)
 		{
-			if (Long_Array[Checking] <= Long_Array[Min])
+			if (Long_Array[Checking][0] <= Long_Array[Min][0])
 			{
 				Min = Checking;
 			}
