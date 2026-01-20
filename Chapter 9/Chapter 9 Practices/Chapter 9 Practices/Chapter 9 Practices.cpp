@@ -39,7 +39,22 @@ int main()
 	}
 	case 3:
 	{
+		int x = 25;
+		int* ptr = nullptr;
 
+		ptr = &x;
+
+		cout << "value of x printed twice: " << endl;
+		cout << x << endl;
+		cout << *ptr << endl;
+
+		*ptr = 100;
+
+		cout << "value of x printed twice" << endl;
+		cout << x << endl;
+		cout << *ptr << endl;
+
+		return 0;
 	}
 	}
 }
