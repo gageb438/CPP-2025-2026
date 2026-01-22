@@ -2,6 +2,11 @@
 
 using namespace std;
 
+void getNumber(int* Number);
+void doubleValue(int* Number);
+void Get_Sales(double* Something, int SIZE);
+double Total_Sales(double* Something, int SIZE);
+
 int main()
 {
 	cout << "choice: ";
@@ -147,5 +152,61 @@ int main()
 		}
 		break;
 	}
+	case 8:
+	{
+		int number;
+
+		getNumber(&number);
+		doubleValue(&number);
+
+		cout << "The number you entered has been doubled." << endl;
+		cout << "It is now : " << number << endl;
+		break;
 	}
+	case 9:
+	{
+		const int SIZE = 4;
+		double Quarterly_Sales[SIZE];
+		
+		Get_Sales(Quarterly_Sales, SIZE);
+		int TOTAL = Total_Sales(Quarterly_Sales, SIZE);
+		cout << "The total was $" << TOTAL << endl;
+	}
+	}
+}
+
+void getNumber(int* Number)
+{
+	cout << "Input a number: ";
+	cin >> *Number;
+}
+void doubleValue(int* Number)
+{
+	*Number *= 2;
+}
+
+void Get_Sales(double* Quarterly_Sales, const int SIZE)
+{
+	for (int Counter = 0; Counter < SIZE; Counter++)
+	{
+		double Sales;
+		cout << "Enter the sales for quarter " << Counter << " : ";
+		cin >> Sales;
+
+		*Quarterly_Sales = Sales;
+		Quarterly_Sales++;
+	}
+}
+
+double Total_Sales(double* Quarterly_Sales, const int SIZE)
+{
+	double TOTAL = 0;
+
+	for (int Counter = 0; Counter < SIZE; Counter++)
+	{
+		TOTAL += *Quarterly_Sales;
+		Quarterly_Sales++;
+	}
+
+	return TOTAL;
 }
