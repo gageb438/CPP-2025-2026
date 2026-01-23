@@ -6,6 +6,7 @@ void getNumber(int* Number);
 void doubleValue(int* Number);
 void Get_Sales(double* Something, int SIZE);
 double Total_Sales(double* Something, int SIZE);
+int* Get_Random_Numbers(int Size);
 
 int main()
 {
@@ -172,6 +173,22 @@ int main()
 		int TOTAL = Total_Sales(Quarterly_Sales, SIZE);
 		cout << "The total was $" << TOTAL << endl;
 	}
+	case 10:
+	{
+		int* Numbers = nullptr;
+
+		Numbers = Get_Random_Numbers(5);
+
+		for (int Count = 0; Count < 5; Count++)
+		{
+			cout << Numbers[Count] << endl;
+		}
+
+		delete[] Numbers;
+		Numbers = nullptr;
+
+		return 0;
+	}
 	}
 }
 
@@ -209,4 +226,25 @@ double Total_Sales(double* Quarterly_Sales, const int SIZE)
 	}
 
 	return TOTAL;
+}
+
+int* Get_Random_Numbers(int Size)
+{
+	int* Array = nullptr;
+
+	if (Size <= 0)
+	{
+		return nullptr;
+	}
+
+	Array = new int[Size];
+
+	srand(time(0));
+
+	for (int Count = 0; Count < Size; Count++)
+	{
+		Array[Count] = rand();
+	}
+
+	return Array;
 }
