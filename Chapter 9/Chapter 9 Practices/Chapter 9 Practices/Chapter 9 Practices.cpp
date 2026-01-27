@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 
 using namespace std;
 
@@ -7,6 +8,8 @@ void doubleValue(int* Number);
 void Get_Sales(double* Something, int SIZE);
 double Total_Sales(double* Something, int SIZE);
 int* Get_Random_Numbers(int Size);
+void Display_Array(int og[], int* new_ar, int SIZE);
+int* Duplicate_Array(int To_Copy[], int SIZE);
 
 int main()
 {
@@ -172,6 +175,8 @@ int main()
 		Get_Sales(Quarterly_Sales, SIZE);
 		int TOTAL = Total_Sales(Quarterly_Sales, SIZE);
 		cout << "The total was $" << TOTAL << endl;
+
+		break;
 	}
 	case 10:
 	{
@@ -187,7 +192,51 @@ int main()
 		delete[] Numbers;
 		Numbers = nullptr;
 
-		return 0;
+		break;
+	}
+	case 11:
+	{
+		const int SIZE = 8;
+		int something1[SIZE] = { 1,2,3,4,5,6,7,8 };
+		int something2[SIZE] = { 8,7,6,5,4,3,2,1 };
+		int something3[SIZE] = { 5,4,3,2,1,7,8,6 };
+
+		int* copy1 = Duplicate_Array(something1, SIZE);
+		int* copy2 = Duplicate_Array(something2, SIZE);
+		int* copy3 = Duplicate_Array(something3, SIZE);
+
+		Display_Array(something1, copy1, SIZE);
+		Display_Array(something2, copy2, SIZE);
+		Display_Array(something3, copy3, SIZE);
+
+		break;
+	}
+	case 12:
+	{
+		unique_ptr<int> ptr(new int);
+		*ptr = 99;
+		cout << *ptr << endl;
+		break;
+	}
+	case 13:
+	{
+		int max;
+		cout << "How many numbers do you wish to enter? ";
+		cin >> max;
+		unique_ptr<int[]> ptr(new int[max]);
+		for (int index = 0; index < max; index++)
+		{
+			cout << "Enter an integer number: ";
+			cin >> ptr[index];
+		}
+
+		cout << "Here are the values you entered: " << endl;
+		for (int index = 0; index < max; index++)
+		{
+			cout << ptr[index] << endl;
+		}
+
+		break;
 	}
 	}
 }
@@ -247,4 +296,38 @@ int* Get_Random_Numbers(int Size)
 	}
 
 	return Array;
+}
+
+int* Duplicate_Array(int To_Copy[], int SIZE)
+{
+	int* Copied = new int[SIZE];
+
+	for (int Pos = 0; Pos < SIZE; Pos++)
+	{
+		Copied[Pos] = To_Copy[Pos];
+	}
+
+	return Copied;
+}
+
+void Display_Array(int OG[], int* NEW, int SIZE)
+{
+	cout << "Original : { ";
+
+	for (int pos = 0; pos < SIZE; pos++)
+	{
+		cout << OG[pos] << " ";
+	}
+
+	cout << "}" <<  endl;
+
+	cout << "Copied : { ";
+
+	for (int pos = 0; pos < SIZE; pos++)
+	{
+		cout << *NEW << " ";
+		NEW++;
+	}
+
+	cout << "}" << endl;
 }
