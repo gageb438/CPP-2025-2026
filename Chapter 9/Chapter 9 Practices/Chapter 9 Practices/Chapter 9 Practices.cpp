@@ -242,11 +242,12 @@ int main()
 	{
 		const int size = 15;
 		int donations[15] = {5, 100, 5, 25, 10, 5, 35, 5, 5, 100, 10, 15, 10, 5, 10};
+		
 		cout << "Original : { ";
 
-		for (int pos = 0; pos < SIZE; pos++)
+		for (int pos = 0; pos < size; pos++)
 		{
-			cout << OG[pos] << " ";
+			cout << donations[pos] << " ";
 		}
 
 		cout << "}" << endl; cout << "OG array: " << endl;
