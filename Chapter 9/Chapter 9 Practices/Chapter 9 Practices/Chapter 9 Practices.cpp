@@ -238,6 +238,38 @@ int main()
 
 		break;
 	}
+	case 14:
+	{
+		const int size = 15;
+		int donations[15] = {5, 100, 5, 25, 10, 5, 35, 5, 5, 100, 10, 15, 10, 5, 10};
+		cout << "Original : { ";
+
+		for (int pos = 0; pos < SIZE; pos++)
+		{
+			cout << OG[pos] << " ";
+		}
+
+		cout << "}" << endl; cout << "OG array: " << endl;
+		
+		for (int Working_Pos = 0; Working_Pos < size; Working_Pos++)
+		{
+			int min = donations[Working_Pos];
+			int min_index = Working_Pos;
+
+			for (int Counting_Pos = 0; Counting_Pos < size; Counting_Pos++)
+			{
+				if (min < donations[Working_Pos])
+				{
+					min_index = Counting_Pos;
+					min = donations[Counting_Pos];
+				}
+			}
+
+			int temp = donations[Working_Pos];
+			donations[Working_Pos] = min;
+			donations[min_index] = temp;
+		}
+	}
 	}
 }
 
