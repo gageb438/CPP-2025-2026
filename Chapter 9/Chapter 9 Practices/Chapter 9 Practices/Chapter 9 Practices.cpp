@@ -10,6 +10,8 @@ double Total_Sales(double* Something, int SIZE);
 int* Get_Random_Numbers(int Size);
 void Display_Array(int og[], int* new_ar, int SIZE);
 int* Duplicate_Array(int To_Copy[], int SIZE);
+void Selection_Sort(int* Long_Array[], int Size);
+void Swap(int& Pos1, int& Pos2);
 
 int main()
 {
@@ -241,35 +243,35 @@ int main()
 	case 14:
 	{
 		const int size = 15;
-		int donations[15] = {5, 100, 5, 25, 10, 5, 35, 5, 5, 100, 10, 15, 10, 5, 10};
-		
+		int donations[size] = {5, 100, 5, 25, 10, 5, 35, 5, 5, 100, 10, 15, 10, 5, 10};
+		int* pointer_array[size] = { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr };
+
+		for (int index = 0; index < size; index++)
+		{
+			pointer_array[index] = &donations[index];
+		}
+
 		cout << "Original : { ";
 
-		for (int pos = 0; pos < size; pos++)
+		for (int index = 0; index < size; index++)
 		{
-			cout << donations[pos] << " ";
+			cout << *pointer_array[index] << " ";
 		}
 
-		cout << "}" << endl; cout << "OG array: " << endl;
-		
-		for (int Working_Pos = 0; Working_Pos < size; Working_Pos++)
+		cout << "}" << endl;
+
+		Selection_Sort(pointer_array, size);
+
+		cout << "Sorted : { ";
+
+		for (int index = 0; index < size; index++)
 		{
-			int min = donations[Working_Pos];
-			int min_index = Working_Pos;
-
-			for (int Counting_Pos = 0; Counting_Pos < size; Counting_Pos++)
-			{
-				if (min < donations[Working_Pos])
-				{
-					min_index = Counting_Pos;
-					min = donations[Counting_Pos];
-				}
-			}
-
-			int temp = donations[Working_Pos];
-			donations[Working_Pos] = min;
-			donations[min_index] = temp;
+			cout << *pointer_array[index] << " ";
 		}
+
+		cout << "}" << endl;
+
+		break;
 	}
 	}
 }
@@ -363,4 +365,31 @@ void Display_Array(int OG[], int* NEW, int SIZE)
 	}
 
 	cout << "}" << endl;
+}
+
+void Selection_Sort(int* Long_Array[], int Size)
+{
+	int Min;
+
+	for (int Position = 0; Position < Size; Position++)
+	{
+		Min = Position;
+
+		for (int Checking = Position + 1; Checking < Size; Checking++)
+		{
+			if (*Long_Array[Checking] <= *Long_Array[Min])
+			{
+				Min = Checking;
+			}
+		}
+
+		Swap(*Long_Array[Min], *Long_Array[Position]);
+	}
+}
+
+void Swap(int& Pos1, int& Pos2)
+{
+	int Temporary = Pos1;
+	Pos1 = Pos2;
+	Pos2 = Temporary;
 }
