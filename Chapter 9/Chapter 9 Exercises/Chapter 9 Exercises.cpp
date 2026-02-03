@@ -2,12 +2,15 @@
 
 using namespace std;
 
-void Selection_Sort(int* Long_Array[], int Size);
-void Swap(int& Pos1, int& Pos2);
+void Selection_Sort(double* Long_Array, int Size);
+void Swap(double& Pos1, double& Pos2);
 void Test_Scores();
+double Find_Average(double* Array, int Size);
+void Re_Write();
+int* Do_Something(int*, int*);
 
 int main()
-{
+{   
     int choice = -1;
 
     while (choice < 0 || choice > 4)
@@ -16,20 +19,23 @@ int main()
         cin >> choice;
     }
 
-    switch choice:
+    switch (choice)
     {
         case 1:
         {
             Test_Scores();
             break;
         }
-        
+        case 2:
+        {
+            Re_Write();
+        }
     }
 }
 
 void Test_Scores()
 {
-    int Scores = -1
+    int Scores = -1;
 
     while (Scores <= 0)
     {
@@ -49,9 +55,17 @@ void Test_Scores()
         }
         Grades[Count] = Temp_Score;
     }
+
+    Selection_Sort(Grades, Scores);
+    
+    double avg = Find_Average(Grades, Scores);
+
+    cout << "The average is : " << avg << endl;
+
+    delete[] Grades;
 }
 
-void Selection_Sort(int* Long_Array[], int Size)
+void Selection_Sort(double* Long_Array, int Size)
 {
 	int Min;
 
@@ -61,19 +75,52 @@ void Selection_Sort(int* Long_Array[], int Size)
 
 		for (int Checking = Position + 1; Checking < Size; Checking++)
 		{
-			if (*Long_Array[Checking] <= *Long_Array[Min])
+			if (Long_Array[Checking] < Long_Array[Min])
 			{
 				Min = Checking;
 			}
 		}
 
-		Swap(*Long_Array[Min], *Long_Array[Position]);
+		Swap(Long_Array[Min], Long_Array[Position]);
 	}
 }
 
-void Swap(int& Pos1, int& Pos2)
+void Swap(double& Pos1, double& Pos2)
 {
-	int Temporary = Pos1;
+	double Temporary = Pos1;
 	Pos1 = Pos2;
 	Pos2 = Temporary;
+}
+
+double Find_Average(double* Array, int Size)
+{
+    double min = Array[0];
+    double total = 0;
+    for (int Count = 0; Count < Size; Count++)
+    {
+        total += Array[Count];
+    }
+
+    return (total - min) / (Size - 1);
+}
+
+void Re_Write()
+{
+    int Val1 = 100;
+    int Val2 = 200;
+    int* X = &Val1;
+    int* Y = &Val2;
+
+    int* Z = Do_Something(X, Y);
+    cout << "Value of " << *X << " and " << *Y << " doing something is " << *Z << endl;
+}
+
+int* Do_Something(int* X, int* Y)
+{
+    int Temporary = *X;
+    *X = *Y * 10;
+    *Y = Temporary * 10;
+    int Zx = *X + *Y;
+    int* Z = &Zx;
+    return Z;
 }
