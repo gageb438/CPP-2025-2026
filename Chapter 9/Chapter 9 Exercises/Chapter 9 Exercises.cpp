@@ -7,7 +7,7 @@ void Swap(double& Pos1, double& Pos2);
 void Test_Scores();
 double Find_Average(double* Array, int Size);
 void Re_Write();
-int* Do_Something(int*, int*);
+int Do_Something(int*, int*);
 
 int main()
 {   
@@ -111,16 +111,15 @@ void Re_Write()
     int* X = &Val1;
     int* Y = &Val2;
 
-    int* Z = Do_Something(X, Y);
-    cout << "Value of " << *X << " and " << *Y << " doing something is " << *Z << endl;
+    int Z = Do_Something(X, Y);
+    cout << "Value of " << *X << " and " << *Y << " doing something is " << Z << endl;
 }
 
-int* Do_Something(int* X, int* Y)
+int Do_Something(int* X, int* Y)
 {
     int Temporary = *X;
     *X = *Y * 10;
     *Y = Temporary * 10;
-    int Zx = *X + *Y;
-    int* Z = &Zx;
+    int Z = *X + *Y;
     return Z;
 }
