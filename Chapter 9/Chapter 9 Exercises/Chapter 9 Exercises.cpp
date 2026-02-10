@@ -9,30 +9,6 @@ double Find_Average(double* Array, int Size);
 void Re_Write();
 int Do_Something(int*, int*);
 
-int main()
-{   
-    int choice = -1;
-
-    while (choice < 0 || choice > 4)
-    {
-        cout << "Input choice: " << endl;
-        cin >> choice;
-    }
-
-    switch (choice)
-    {
-        case 1:
-        {
-            Test_Scores();
-            break;
-        }
-        case 2:
-        {
-            Re_Write();
-        }
-    }
-}
-
 void Test_Scores()
 {
     int Scores = -1;
@@ -124,3 +100,72 @@ int Do_Something(int* X, int* Y)
     return Z;
 }
 
+int Mode_Finder(int* Array[], int* Size)
+{
+	// sort array first
+	Selection_Sort(Array, Size);
+
+	int Mode = *Array[0];
+	int Mode_Count = 0;
+	int Best_Mode = Mode;
+	int Best_Mode_Count = 0;
+
+	for (int Counter = 0; Counter < *Size; Counter++)
+	{
+		if (*Array[Counter] = Mode)
+		{
+			Mode_Count++;
+		}
+		else
+		{
+			// check for if the latest mode is better
+			if (Mode_Count > Best_Mode_Count)
+			{
+				// if it is then set the best mode value and the counter of it to the right thing
+				Best_Mode = Mode;
+				Best_Mode_Count = Mode_Count;
+
+				// now set the new mode
+				Mode = *Array[Counter];
+				Mode_Count = 1;
+			}
+		}
+	}
+	cout << "Mode is " << Mode;
+	return Mode;
+}
+
+void Selection_Sort(int* Long_Array[], int* Size)
+{
+	int Min;
+
+	for (int Position = 0; Position < *Size; Position++)
+	{
+		Min = Position;
+
+		for (int Checking = Position + 1; Checking < *Size; Checking++)
+		{
+			if (*Long_Array[Checking] <= *Long_Array[Min])
+			{
+				Min = Checking;
+			}
+		}
+
+		Swap(*Long_Array[Min], *Long_Array[Position]);
+	}
+}
+
+int* Element_Shifter(int* Array[], int* Size)
+{
+    // make new array
+    int* Updated_Array = new int[*Size + 1];
+
+    Updated_Array[0] = 0;
+
+    for (int Counter = 1; Counter <= *Size + 1; Counter++)
+    {
+        Updated_Array[Counter] = *Array[Counter - 1];
+    }
+
+    return Updated_Array;
+}

@@ -12,6 +12,8 @@ void Display_Array(int og[], int* new_ar, int SIZE);
 int* Duplicate_Array(int To_Copy[], int SIZE);
 void Selection_Sort(int* Long_Array[], int Size);
 void Swap(int& Pos1, int& Pos2);
+void Selection_Sort(int* Long_Array[], int* Size);
+int Mode_Finder(int* Array[], int* Size);
 
 int main()
 {
@@ -393,3 +395,4 @@ void Swap(int& Pos1, int& Pos2)
 	Pos1 = Pos2;
 	Pos2 = Temporary;
 }
+
