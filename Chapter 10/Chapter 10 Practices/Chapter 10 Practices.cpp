@@ -106,5 +106,21 @@ int main()
 			cout << "Invalid account number!" << endl;
 		}
 	}
+	case 3:
+	{
+		char Users_Character;
+
+		cout << "Please enter a keyboard character to make uppercase: ";
+		cin.ignore();
+		cin.get(Users_Character);
+		
+		Users_Character = toupper(Users_Character);
+
+		cout << "That character uppercased is " << Users_Character << endl;
+	}
+	case 4:
+	{
+
+	}
 	}
 }
