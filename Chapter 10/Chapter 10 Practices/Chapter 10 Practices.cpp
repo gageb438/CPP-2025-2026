@@ -11,6 +11,12 @@ bool Program_10_2_B(char Customer_Number_Array[], int SIZE);
 
 void Program_10_3();
 
+void Program_10_5();
+
+void Program_10_6();
+
+void Program_10_7();
+
 int main()
 {
 	return 0;
@@ -145,4 +151,65 @@ void Program_10_5()
 	cout << endl;
 }
 
+
+void Program_10_6()
+{
+	const int SIZE = 5;
+	const int LENGTH = 27;
+	char products[SIZE][LENGTH] = { "TVB72 72 - inch television", "BRP98 Blu-Ray Player", "CS101 Car Stereo", "SUB120 Subwoofer", "GPC76 Gaming PC" };
+	char Look_Up[LENGTH];
+	char* str_Ptr = nullptr;
+	int index;
+
+	cout << "Enter a product number to search for: ";
+	cin.getline(Look_Up, LENGTH);
+
+	for (int Index = 0; Index < SIZE; Index++)
+	{
+		str_Ptr = strstr(products[Index], Look_Up);
+		if (str_Ptr != nullptr)
+		{
+			break;
+		}
+	}
+
+	if (str_Ptr != nullptr)
+	{
+		cout << "Product found: " << str_Ptr << endl;
+	}
+	else
+	{
+		cout << "No product found matching that search criteria." << endl;
+	}
+}
+
+
+void Program_10_7()
+{
+	const int SIZE = 30;
+	char Name_1[SIZE], Name_2[SIZE];
+
+	do
+	{
+		cout << "Enter a name (last, first): ";
+		cin.getline(Name_1, SIZE);
+		cout << "Enter a second name (last, first): ";
+		cin.getline(Name_2, SIZE);
+
+		cout << endl << "Here are the two names you entered, alphabetically." << endl;
+		if (strcmp(Name_1, Name_2) < 0)
+		{
+			cout << Name_1 << endl << Name_2 << endl;
+		}
+		else if (strcmp(Name_1, Name_2) > 0)
+		{
+			cout << Name_2 << endl << Name_1 << endl;
+		}
+		else
+		{
+			cout << "You entered the same name twice!" << endl;
+		}
+		cout << endl;
+	} while (Name_1 != "enld");
+}
 
