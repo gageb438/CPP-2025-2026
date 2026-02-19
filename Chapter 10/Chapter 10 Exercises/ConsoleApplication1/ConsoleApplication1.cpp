@@ -6,6 +6,7 @@ using namespace std;
 
 string Upperify(const char* Editable_Manipulator);
 string Lowerify(const char* Editable_Manipulator);
+string Reversify(const char* Editable_Manipulator);
 
 int main()
 {
@@ -17,6 +18,7 @@ int main()
 
 		cout << "Chapter 10 programming exercises menu:" << endl;
 		cout << "1: Case Manipulator" << endl;
+		cout << "2: Password Verifier" << endl;
 
 		cout << ":> ";
 		cin >> Choice;
@@ -53,6 +55,14 @@ int main()
 			string Lowercased_Result = Lowerify(Manipulator.c_str());
 
 			cout << "Lowercased string : " << Lowercased_Result << endl;
+
+			string Reversed_Result = Reversify(Manipulator.c_str());
+
+			cout << "Reversed string : " << Reversed_Result << endl;
+		}
+		case 2:
+		{
+
 		}
 		}
 
@@ -104,5 +114,30 @@ string Reversify(const char* Un_Editable_Manipulator)
 	char Editable_Manipulator[2048];
 	strcpy_s(Editable_Manipulator, 2048, Un_Editable_Manipulator);
 
-	for (int Iterator 0; Iterator < )
+	int Furthest_Left = 0;
+	int Furthest_Right = size(Editable_Manipulator) - 1;
+	
+	for (int Iterator = 0; Iterator < 2048; Iterator++)
+	{
+		if (Iterator != 0)
+		{
+			if (Editable_Manipulator[Iterator] == '\0')
+			{
+				Furthest_Right = Iterator - 1;
+				break;
+			}
+		}
+	}
+	
+	while (Furthest_Left < Furthest_Right)
+	{
+		char stored = Editable_Manipulator[Furthest_Left];
+		Editable_Manipulator[Furthest_Left] = Editable_Manipulator[Furthest_Right];
+		Editable_Manipulator[Furthest_Right] = stored;
+
+		Furthest_Left++;
+		Furthest_Right--;
+	}
+
+	return Editable_Manipulator;
 }
