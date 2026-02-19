@@ -23,9 +23,10 @@ int main()
 		cout << ":> ";
 		cin >> Choice;
 
-		if (Choice < 0 || Choice > 1)
+		if (Choice < 0 || Choice > 2)
 		{
-			cout << "Invalid input. " << endl;
+			cout << "Invalid input." << endl;
+			continue;
 		}
 
 		switch (Choice)
@@ -62,7 +63,68 @@ int main()
 		}
 		case 2:
 		{
+			string Password;
+			const char* Password_C;
+			cout << "Password Verifier:" << endl;
+			cout << "Input a password : ";
 
+			cin.ignore();
+			getline(cin, Password);
+
+			Password_C = Password.c_str();
+
+			int Digits = 0;
+			int Uppercase = 0;
+			int Lowercase = 0;
+			int Characters = 0;
+
+			for (int Iterator = 0; Password_C[Iterator] != '\0'; Iterator++)
+			{
+				if (isdigit(Password_C[Iterator]))
+				{
+					Digits++;
+				}
+				if (isupper(Password_C[Iterator]))
+				{
+					Uppercase++;
+				}
+				if (islower(Password_C[Iterator]))
+				{
+					Lowercase++;
+				}
+				Characters++;
+			}
+
+			bool Valid = true;
+
+			if (Characters >= 9)
+			{
+				if (Digits == 0)
+				{
+					cout << "Password Invalid, it must have at least 1 digit." << endl;
+					Valid = false;
+				}
+				if (Lowercase == 0)
+				{
+					cout << "Password Invalid, it must have at least 1 lowercase character." << endl;
+					Valid = false;
+				}
+				if (Uppercase == 0)
+				{
+					cout << "Password Invalid, it must have at least 1 uppercase letter." << endl;
+					Valid = false;
+				}
+			}
+			else
+			{
+				cout << "Password Invalid, it must have at least 9 characters." << endl;
+				Valid = false;
+			}
+
+			if (Valid)
+			{
+				cout << "Your password is valid. " << endl;
+			}
 		}
 		}
 
