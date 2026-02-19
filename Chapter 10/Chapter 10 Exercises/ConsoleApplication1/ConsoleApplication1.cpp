@@ -1,6 +1,7 @@
 #include <iostream>
-#include <cstdlib>
 #include <string>
+#include <fstream>
+#include <vector>
 
 using namespace std;
 
@@ -124,6 +125,17 @@ int main()
 			if (Valid)
 			{
 				cout << "Your password is valid. " << endl;
+			}
+		}
+		case 3:
+		{
+			ifstream File("text.txt");
+			string Line;
+
+			if (!File || !File.is_open())
+			{
+				cout << "An error has occured opening the file." << endl;
+				continue;
 			}
 		}
 		}
