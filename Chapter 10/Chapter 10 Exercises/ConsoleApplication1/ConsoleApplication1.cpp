@@ -4,7 +4,8 @@
 
 using namespace std;
 
-void Upperify(const char* Editable_Manipulator);
+string Upperify(const char* Editable_Manipulator);
+string Lowerify(const char* Editable_Manipulator);
 
 int main()
 {
@@ -39,48 +40,63 @@ int main()
 			string Manipulator;
 			cout << "Case Manipulator:" << endl;
 			cout << "Input a string to manipulate: ";
-			
+
 			cin.ignore();
 			getline(cin, Manipulator);
 
-			const char* Un_Editable_Manip = Manipulator.c_str();
+			cout << "String you input : " << Manipulator << endl;
 
-			char Editable_Manipulator[2048];
+			string Uppercased_Result = Upperify(Manipulator.c_str());
 
-			strcpy_s(Editable_Manipulator, 2048, Un_Editable_Manip);
+			cout << "Uppercased string : " << Uppercased_Result << endl;
 
-			cout << "String you input : " << Editable_Manipulator << endl;
+			string Lowercased_Result = Lowerify(Manipulator.c_str());
 
-			Upperify(Un_Editable_Manip);
-
-			cout << "Uppercased string : " << Editable_Manipulator << endl;
+			cout << "Lowercased string : " << Lowercased_Result << endl;
 		}
 		}
 
 	}
 }
 
-void Upperify(const char* Un_Editable_Manipulator)
+string Upperify(const char* Un_Editable_Manipulator)
 {
 	char Editable_Manipulator[2048];
 	strcpy_s(Editable_Manipulator, 2048, Un_Editable_Manipulator);
 
-	for (int Iterator = 0; Iterator < 1024; Iterator++)
+	for (int Iterator = 0; Iterator < 2048; Iterator++)
 	{
 		if (Editable_Manipulator[Iterator] == '\0')
 		{
-			return;
+			break;
 		}
 		else
 		{
 			Editable_Manipulator[Iterator] = toupper(Editable_Manipulator[Iterator]);
 		}
 	}
+
+	return string(Editable_Manipulator);
 }
 
-void Lowerify()
+string Lowerify(const char* Un_Editable_Manipulator)
 {
+	char Editable_Manipulator[2048];
+	strcpy_s(Editable_Manipulator, 2048, Un_Editable_Manipulator);
 
+	for (int Iterator = 0; Iterator < 2048; Iterator++)
+	{
+		if (Editable_Manipulator[Iterator] == '\0')
+		{
+			break;
+		}
+		else
+		{
+			Editable_Manipulator[Iterator] = tolower(Editable_Manipulator[Iterator]);
+		}
+	}
+
+	return string(Editable_Manipulator);
 }
 
 void Reversify()
