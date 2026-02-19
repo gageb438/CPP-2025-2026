@@ -99,7 +99,10 @@ string Lowerify(const char* Un_Editable_Manipulator)
 	return string(Editable_Manipulator);
 }
 
-void Reversify()
+string Reversify(const char* Un_Editable_Manipulator)
 {
+	char Editable_Manipulator[2048];
+	strcpy_s(Editable_Manipulator, 2048, Un_Editable_Manipulator);
 
+	for (int Iterator 0; Iterator < )
 }
