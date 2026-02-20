@@ -20,11 +20,12 @@ int main()
 		cout << "Chapter 10 programming exercises menu:" << endl;
 		cout << "1: Case Manipulator" << endl;
 		cout << "2: Password Verifier" << endl;
+		cout << "3: File Analysis" << endl;
 
 		cout << ":> ";
 		cin >> Choice;
 
-		if (Choice < 0 || Choice > 2)
+		if (Choice < 0 || Choice > 3)
 		{
 			cout << "Invalid input." << endl;
 			continue;
@@ -137,6 +138,49 @@ int main()
 				cout << "An error has occured opening the file." << endl;
 				continue;
 			}
+
+			vector<string> Lines;
+
+			while (getline(File, Line))
+			{
+				Lines.push_back(Line);
+			}
+
+			int Lowercase = 0, Uppercase = 0, Digits = 0, Line_Count = 0;
+
+			for (int Iterator = 0; Iterator < Lines.size() - 1; Iterator++)
+			{
+				Line_Count++;
+				string Current = Lines[Iterator];
+				string Using = Current.c_str();
+				
+				int Iterator_2 = 0;
+				while (Using[Iterator_2] != '\0')
+				{
+					if (isdigit(Using[Iterator_2]))
+					{
+						Digits++;
+					}
+					if (isalpha(Using[Iterator_2]))
+					{
+						if (islower(Using[Iterator_2]))
+						{
+							Lowercase++;
+						}
+						else
+						{
+							Uppercase++;
+						}
+					}
+
+					Iterator_2++;
+				}
+			}
+
+			cout << "Uppercase characters: " << Uppercase << endl;
+			cout << "Lowercase characters: " << Lowercase << endl;
+			cout << "Digits: " << Digits << endl;
+			cout << "Sentences: " << Line_Count << endl;
 		}
 		}
 
