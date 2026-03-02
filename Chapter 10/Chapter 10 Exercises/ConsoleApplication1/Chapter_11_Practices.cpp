@@ -11,6 +11,14 @@ struct Pay_Roll
 	double Gross_Pay;
 };
 
+struct Pay_Info
+{
+	string Name = "";
+	int Hours = 0;
+	double Pay_Rate = 0;
+	string Days[3];
+};
+
 int main()
 {
 	int choice;
@@ -45,6 +53,41 @@ int main()
 		cout << "Hours : " << Employee.Hours << endl;
 		cout << "Payrate : " << Employee.Pay_Rate << endl;
 		cout << "Gross Pay : " << Employee.Gross_Pay << endl;
+	}
+	case 2:
+	{
+		Pay_Info Employees[3]; 
+		cout << "Enter the info for 3 employee's 3 days. " << endl;
+		cout << endl;
+
+		for (int Employee = 0; Employee < 3; Employee++)
+		{
+			cout << "Enter employee's name :> ";
+			cin >> Employees[Employee].Name;
+			cout << "Enter the employee's Pay Rate :> ";
+			cin >> Employees[Employee].Pay_Rate;
+			cout << "Enter the employee's Total Hours :> ";
+			cin >> Employees[Employee].Hours;
+
+			for (int Day = 0; Day < 3; Day++)
+			{
+				cout << "Enter the name of the day worked " << Day + 1 << " :> ";
+				cin >> Employees[Employee].Days[Day];
+			}
+		}
+
+		for (int Employee = 0; Employee < 3; Employee++)
+		{
+			cout << "Employee Overview " << Employees[Employee].Name << endl;
+			cout << "Gross Pay :> $" << Employees[Employee].Hours * Employees[Employee].Pay_Rate << endl;
+			cout << "Days Worked : " << endl;
+			for (int Day = 0; Day < 3; Day++)
+			{
+				cout << "> " << Employees[Employee].Days[Day] << endl;
+			}
+
+			cout << endl;
+		}
 	}
 	}
 }
