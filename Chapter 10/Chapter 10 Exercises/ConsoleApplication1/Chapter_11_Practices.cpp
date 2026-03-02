@@ -19,6 +19,23 @@ struct Pay_Info
 	string Days[3];
 };
 
+struct Date
+{
+	string Month, Day, Year;
+};
+
+struct Place
+{
+	string Address, City, State, Zip;
+};
+
+struct EmployeeInfo
+{
+	string Name, Employee_Number;
+	Date Birthdate;
+	Place Residence;
+};
+
 int main()
 {
 	int choice;
@@ -53,6 +70,7 @@ int main()
 		cout << "Hours : " << Employee.Hours << endl;
 		cout << "Payrate : " << Employee.Pay_Rate << endl;
 		cout << "Gross Pay : " << Employee.Gross_Pay << endl;
+		break;
 	}
 	case 2:
 	{
@@ -88,6 +106,30 @@ int main()
 
 			cout << endl;
 		}
+		break;
+	}
+	case 3:
+	{
+		EmployeeInfo Employee;
+
+		cout << "Hello employee. Please fill out your new employee info card." << endl;
+		cout << "Name :> ";
+		cin >> Employee.Name;
+		cout << "Employee Number :> ";
+		cin >> Employee.Employee_Number;
+		cout << "Birth Year :> ";
+		cin >> Employee.Birthdate.Year;
+		cout << "Birth Month :> ";
+		cin >> Employee.Birthdate.Month;
+		cout << "Birth Day :> ";
+		cin >> Employee.Birthdate.Day;
+		cout << "Home Zip :> ";
+		cin >> Employee.Residence.Zip;
+		cout << "Home State :> ";
+		cin >> Employee.Residence.State;
+		cout << "Home City :> ";
+		cin >> Employee.Residence.City;
+		cout << "Home Adress :> ";
 	}
 	}
 }
