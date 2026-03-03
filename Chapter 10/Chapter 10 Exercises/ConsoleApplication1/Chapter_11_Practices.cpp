@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -10,7 +11,6 @@ struct Pay_Roll
 	double Pay_Rate;
 	double Gross_Pay;
 };
-
 struct Pay_Info
 {
 	string Name = "";
@@ -18,23 +18,31 @@ struct Pay_Info
 	double Pay_Rate = 0;
 	string Days[3];
 };
-
 struct Date
 {
 	string Month, Day, Year;
 };
-
 struct Place
 {
 	string Address, City, State, Zip;
 };
-
 struct EmployeeInfo
 {
 	string Name, Employee_Number;
 	Date Birthdate;
 	Place Residence;
 };
+struct Inventory_Item
+{
+	int Part_Number, Units;
+	double Price;
+	string Description;
+};
+
+
+void Get_Item(Inventory_Item& Item);
+void Show_Item(Inventory_Item Item);
+
 
 int main()
 {
@@ -130,6 +138,55 @@ int main()
 		cout << "Home City :> ";
 		cin >> Employee.Residence.City;
 		cout << "Home Adress :> ";
+		cout << "Here is the info you input : " << endl;
+		cout << "Name : " << Employee.Name;
+		cout << "Employee Number : " << Employee.Employee_Number << endl;
+		cout << "Birthday : " << Employee.Birthdate.Month << " / " << Employee.Birthdate.Day << " / " << Employee.Birthdate.Year << endl;
+		cout << "Residence : " << Employee.Residence.Address << ", " << Employee.Residence.City << " " << Employee.Residence.State << " " << Employee.Residence.Zip << endl;
+		break;
+	}
+	case 4:
+	{
+		Inventory_Item My_Item;
+		Get_Item(My_Item);
+		Show_Item(My_Item);
+		break;
+	}
+	case 5:
+	{
+		enum Day { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY };
+
+		const int NUM_DAYS = 5;
+		double Sales[NUM_DAYS];
+		double Total = 0.0;
+		int Index;
+
+		for (Index = MONDAY; Index <= FRIDAY; Index++)
+		{
+			cout << "Enter the sales on " << Index << " :> ";
+			cin >> Sales[Index];
+		}
 	}
 	}
+}
+
+void Get_Item(Inventory_Item& Item)
+{
+	cout << "Enter the part number :> ";
+	cin >> Item.Part_Number;
+	cout << "Enter the description :> ";
+	cin.ignore();
+	getline(cin, Item.Description);
+	cout << "Enter the number of units on hand :> ";
+	cin >> Item.Units;
+	cout << "Enter the price :> ";
+	cin >> Item.Price;
+}
+
+void Show_Item(Inventory_Item Item)
+{
+	cout << "Part Number : " << Item.Part_Number << endl;
+	cout << "Description : " << Item.Description << endl;
+	cout << "Units on hand : " << Item.Units << endl;
+	cout << "Price : $" << Item.Price << endl;
 }
