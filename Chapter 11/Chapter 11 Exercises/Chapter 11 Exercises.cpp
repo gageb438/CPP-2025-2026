@@ -16,6 +16,7 @@ vector<Speaker> Speakers;
 
 Speaker Enter_Speaker_Information();
 void Change_Speaker();
+void Display_Speakers();
 
 
 int main()
@@ -56,6 +57,11 @@ int main()
 		case 2:
 		{
 			Change_Speaker();
+			break;
+		}
+		case 3:
+		{
+			Display_Speakers();
 			break;
 		}
 		case 4:
@@ -104,7 +110,7 @@ Speaker Enter_Speaker_Information()
 	
 	Item.Number = Speakers.size() + 1;
 
-	cout << "You have entered information for speakers number " << Item.Number << endl;
+	cout << endl << "You have entered information for speaker number " << Item.Number << endl << endl;
 
 	return Item;
 }
@@ -126,4 +132,22 @@ void Change_Speaker()
 
 	cout << "Speaker number not found." << endl;
 	return;
+}
+
+void Display_Speakers()
+{
+	if (Speakers.size() == 0)
+	{
+		cout << endl << "There are no speakers. " << endl << endl;
+		return;
+	}
+
+	for (int Iterator = 0; Iterator < Speakers.size(); Iterator++)
+	{
+		cout << endl << "Speaker Name : " << Speakers[Iterator].Speaker_Name << endl;
+		cout << "Speaker Number : " << Speakers[Iterator].Number << endl;
+		cout << "Speaker Telephone : " << Speakers[Iterator].Telephone << endl;
+		cout << "Speaker Fee : " << Speakers[Iterator].Fee << endl;
+		cout << "Speaker Topic : " << Speakers[Iterator].Topic << endl << endl;
+	}
 }
