@@ -169,3 +169,17 @@ void Decrypt_File()
 
 	return;
 }
+
+
+struct Item
+{
+	string Description = "", Date_Added;
+	int Quantity = 0;
+	double Wholesale_Cost = 0.0, Retail_Cost = 0.0;
+};
+
+
+void Inventory_Menu()
+{
+	
+}
