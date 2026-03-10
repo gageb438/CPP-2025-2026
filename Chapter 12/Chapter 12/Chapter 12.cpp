@@ -216,10 +216,10 @@ struct Date
 
 struct Item
 {
-	string Description = "";
+	char Description[50];
 	Date Date_Added;
-	int Quantity = 0;
-	double Wholesale_Cost = 0.0, Retail_Cost = 0.0;
+	int Quantity = -1;
+	double Wholesale_Cost = -1.0, Retail_Cost = -1.0;
 };
 
 
@@ -245,15 +245,17 @@ void Inventory_Menu()
 		case 1:
 		{
 			Add_Records();
-			continue;
+			break;
 		}
 		case 2:
 		{
 			Display_Records();
+			break;
 		}
 		case 3:
 		{
 			Change_Records();
+			break;
 		}
 		case 4:
 		{
@@ -273,7 +275,8 @@ void Add_Records()
 {
 	Item My_Item;
 	cout << "Enter the description of the item :> ";
-	cin >> My_Item.Description;
+	cin.ignore();
+	cin.getline(My_Item.Description, 50);
 
 	while (My_Item.Date_Added.Day < 1 || My_Item.Date_Added.Day > 31)
 	{
@@ -302,15 +305,37 @@ void Add_Records()
 			cout << "Invalid year. Please enter a positive number." << endl;
 		}
 	}
-	cout << "Enter the quantity of the item :> ";
-	cin >> My_Item.Quantity;
-	cout << "Enter the wholesale cost of the item :> ";
-	cin >> My_Item.Wholesale_Cost;
-	cout << "Enter the retail cost of the item :> ";
-	cin >> My_Item.Retail_Cost;
+	while (My_Item.Quantity < 0)
+	{
+		cout << "Enter the quantity of the item :> ";
+		cin >> My_Item.Quantity;
+		if (My_Item.Quantity < 0)
+		{
+			cout << "Invalid Quantity. Please enter a number greater than or equal to 0." << endl;
+		}
+	}
+	while (My_Item.Wholesale_Cost < 0)
+	{
+		cout << "Enter the wholesale cost of the item :> ";
+		cin >> My_Item.Wholesale_Cost;
+		if (My_Item.Wholesale_Cost < 0)
+		{
+			cout << "Invalid Wholesale cost. Please enter a number greater than or equal to 0." << endl;
+		}
+	}
+	while (My_Item.Retail_Cost < 0)
+	{
+		cout << "Enter the retail cost of the item :> ";
+		cin >> My_Item.Retail_Cost;
+		if (My_Item.Retail_Cost < 0)
+		{
+			cout << "Invalid Retail cost. Please enter a number greater than or equal to 0. " << endl;
+		}
+	}
+	
 	
 	// Open the file
-	fstream Inventory_File("Inventory.txt", ios::app | ios::binary);
+	fstream Inventory_File("Inventory.dat", ios::app | ios::binary);
 
 	if (!Inventory_File)
 	{
@@ -326,7 +351,7 @@ void Display_Records()
 {
 	Item My_Item;
 
-	ifstream Inventory_File("Inventory.txt", ios::binary);
+	ifstream Inventory_File("Inventory.dat", ios::binary);
 
 	if (!Inventory_File)
 	{
@@ -349,13 +374,75 @@ void Change_Records()
 {
 	Item My_Item;
 
-	ifstream Inventory_File("Inventory.txt", ios::binary);
+	fstream Inventory_File("Inventory.dat", ios::binary | ios::in | ios::in);
 
-	if (!Inventory_File)
+	if (!Inventory_File.is_open())
 	{
 		cout << "Error opening the inventory file." << endl;
 		return;
 	}
 
+	int Target_Record = -1;
 	int Counter = 0;
+
+	while (Inventory_File.read(reinterpret_cast<char*>(&My_Item), sizeof(My_Item)))
+	{
+		cout << "Record Number : #" << Counter << endl;
+		cout << "Description : " << My_Item.Description << endl;
+		cout << "Date Added : " << My_Item.Date_Added.Month << "/" << My_Item.Date_Added.Day << "/" << My_Item.Date_Added.Year << endl;
+		cout << "Quantity : " << My_Item.Quantity << endl;
+		cout << "Wholesale Cost : " << My_Item.Wholesale_Cost << endl;
+		cout << "Retail Cost : " << My_Item.Retail_Cost << endl;
+		cout << "-----------------------------" << endl;
+
+		Counter++;
+	}
+
+	if (Counter == 0)
+	{
+		cout << "No records found in the inventory file." << endl;
+	}
+	
+	if (Target_Record < 0 || Target_Record > Counter)
+	{
+		cout << "Enter the record number you want to change :> ";
+		cin >> Target_Record;
+	}
+
+	Inventory_File.seekg(Target_Record * sizeof(Item), ios::beg);
+	Inventory_File.read(reinterpret_cast<char*>(&My_Item), sizeof(My_Item));
+
+	do
+	{
+		cout << "Enter the quantity of the item :> ";
+		cin >> My_Item.Quantity;
+		if (My_Item.Quantity < 0)
+		{
+			cout << "Invalid Quantity. Please enter a number greater than or equal to 0." << endl;
+		}
+	} while (My_Item.Quantity < 0);
+	do
+	{
+		cout << "Enter the wholesale cost of the item :> ";
+		cin >> My_Item.Wholesale_Cost;
+		if (My_Item.Wholesale_Cost < 0)
+		{
+			cout << "Invalid Wholesale cost. Please enter a number greater than or equal to 0." << endl;
+		}
+	} while (My_Item.Wholesale_Cost < 0);
+	do
+	{
+		cout << "Enter the retail cost of the item :> ";
+		cin >> My_Item.Retail_Cost;
+		if (My_Item.Retail_Cost < 0)
+		{
+			cout << "Invalid Retail cost. Please enter a number greater than or equal to 0. " << endl;
+		}
+	} while (My_Item.Retail_Cost < 0);
+
+	Inventory_File.seekp(Target_Record * sizeof(Item), ios::beg);
+	Inventory_File.write(reinterpret_cast<char*>(&My_Item), sizeof(My_Item));
+
+	cout << "New record written. " << endl;
+	Inventory_File.close();
 }
