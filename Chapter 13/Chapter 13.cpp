@@ -4,58 +4,6 @@
 
 using namespace std;
 
-class Rectangle
-{
-private:
-	double Width = 0.0, Length = 0.0, Area = 0.0;
-	string Name;
-
-	void Calculate_Area()
-	{
-		Area = Width * Length;
-	}
-
-public:
-	// Getters
-	double Get_Width()
-	{
-		return Width;
-	}
-	
-	double Get_Length()
-	{
-		return Length;
-	}
-
-	double Get_Area()
-	{
-		return Area;
-	}
-
-	string Get_Name()
-	{
-		return Name;
-	}
-
-	// Setters
-	void Set_Width(double New_Width)
-	{
-		Width = New_Width;
-		Calculate_Area();
-	}
-	
-	void Set_Length(double New_Length)
-	{
-		Length = New_Length;
-		Calculate_Area();
-	}
-
-	void Set_Name(string New_Name)
-	{
-		Name = New_Name;
-	}
-};
-
 int main()
 {
 	/*
