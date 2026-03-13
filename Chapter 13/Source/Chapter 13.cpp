@@ -7,10 +7,15 @@
 using namespace std;
 
 void Display_Stock(Inventory Item[], const int SIZE);
+void Fill_Cart(Inventory Item[], Cash_Register& Register, const int SIZE);
+void Output_Summary(Cash_Register Persons_Register);
 
 int main()
 {
+	// Init
 	const int SIZE = 20;
+	
+	Cash_Register Register;
 	Inventory Item[SIZE] =
 	{
 		Inventory(1, 50, 1.99, "Apple"),
@@ -35,9 +40,10 @@ int main()
 		Inventory(20, 27, 2.59, "Cookies")
 	};
 
-	Display_Stock(Item, SIZE);
+	Fill_Cart(Item, Register, SIZE);
+	Output_Summary(Register);
 
-
+	return 0;
 }
 
 void Display_Stock(Inventory Item[], const int SIZE)
@@ -48,7 +54,84 @@ void Display_Stock(Inventory Item[], const int SIZE)
 
 	for (int Iterator = 0; Iterator < SIZE; Iterator++)
 	{
-		cout << "Item : \t\t\t|\t" << Item[Iterator].Get_Name() << "\t\t|\t     " << Item[Iterator].Get_Item_Number() << "\t\t|\t   " << Item[Iterator].Get_Quantity() << "\t\t|\t$" << Item[Iterator].Get_Cost() << endl;
+		cout << "Item : \t\t\t|\t" << Item[Iterator].Get_Name() << "\t\t|\t     " << Item[Iterator].Get_Item_Number() << "\t\t|\t   " << Item[Iterator].Get_Quantity() << "\t\t|\t$" << Item[Iterator].Get_Cost() * 1.30 /* Up the cost by 30%, this is the proper markup. */ << endl;
 	}
 }
 
+void Fill_Cart(Inventory Item[], Cash_Register& Register, const int SIZE)
+{
+	while (true)
+	{
+		// Init
+		int User_Request;
+		int Requested_Amount;
+
+		// Display the stock
+		Display_Stock(Item, SIZE);
+
+		// Get input for the item number
+		cout << endl << "Enter the item number that you would like to purchase (0 to end)" << endl;
+		cout << ":> ";
+		cin >> User_Request;
+
+		// Check if they chose to exit
+		if (User_Request == 0)
+		{
+			return;
+		}
+
+		// Check its valid
+		if (Item[User_Request - 1].Get_Quantity() == 0)
+		{
+			cout << "Item out of stock. Try a new value." << endl;
+			continue;
+		}
+		
+		while (User_Request < 0 || User_Request > SIZE)
+		{
+			cout << "Invalid item number, please try again (0 to end)";
+			cout << ":> ";
+			cin >> User_Request;
+		}
+
+		// Get input for the amount
+		cout << "Enter the amount you would like to purchase";
+		cout << ":> ";
+		cin >> Requested_Amount;
+
+		// Validate it
+		while (Requested_Amount <= 0 || Requested_Amount > Item[User_Request - 1].Get_Quantity())
+		{
+			cout << "Invalid amount. Please try again.";
+			cout << ":> ";
+			cin >> Requested_Amount;
+		}
+
+		// Add it to the cart
+		// I know this is bad memory practice but clone the class and add it to the cart then update quantity 
+		Inventory Clone = Item[User_Request - 1];
+		Clone.Set_Quantity(Requested_Amount);
+		
+		// Add it to the cart
+		Register.Add_To_Cart(Clone);
+
+		// Update the stock
+		Item[User_Request - 1].Set_Quantity(Item[User_Request - 1].Get_Quantity() - Requested_Amount);
+	}
+}
+
+void Output_Summary(Cash_Register Persons_Register)
+{
+	// Output the total
+	cout << endl << "Cart Summary : " << endl;
+	cout << "_______________________________________" << endl;
+	cout << fixed << showpoint << setprecision(2);
+	cout << "\tTotal Cost : $" << Persons_Register.Get_Total_Cost() << endl;
+	cout << "\tMarkup : $" << Persons_Register.Get_Markup() << endl;
+	cout << "+\tTax : $" << Persons_Register.Get_Tax() << endl;
+	cout << "---------------------------------------" << endl;
+	cout << "\tSub Total : $" << Persons_Register.Get_Sub_Total() << endl;
+
+	// Exit program
+	exit(0);
+}

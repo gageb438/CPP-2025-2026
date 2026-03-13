@@ -38,7 +38,7 @@ void Inventory::Set_Cost(double New_Cost)
 
 void Inventory::Set_Total_Cost()
 {
-	Cost = Quantity * Cost;
+	Total_Cost = Quantity * Cost;
 }
 
 void Inventory::Set_Name(std::string New_Name)
@@ -70,3 +70,4 @@ std::string Inventory::Get_Name()
 {
 	return Name;
 }
+
