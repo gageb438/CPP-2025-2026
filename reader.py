@@ -1,0 +1,45 @@
+ALL_FLAGS = {
+    "GENERATE" : "#gen",
+    "NOGENERATE" : "#nogen",
+    "FUNCTION_START" : "#fs",
+    "FUNCTION_END" : "#fe",
+    "FUNCTION_NAME" : "#n:",
+    "FUNCTION_PROCESS" : "#p:",
+    "FUNCTION_OUTPUT" : "#o:",
+}
+
+Flag_Position = {
+
+}
+
+Target_File_Name = ""
+Target_File = open(Target_File_Name, "r")
+
+def Identify_Main_Flags(self):
+    # Return to start of file.
+    Target_File.seek(0)
+
+    # Read through the file
+    for Line in Target_File:
+        # Store the line's starting position to be used later.
+        Starting_Position = Target_File.tell()
+
+        # Check if its a flag.
+
+def _Flag_Dentify(self, Flag:str):
+    # Check if its a comment
+    if Flag.startswith("#"):
+        # Clone the flag.
+        Flag2 = Flag
+
+        Flag2 = Flag2.replace(" ", "")
+        Flag2 = Flag2.lower()
+
+        # Check it against the flag list.
+        for Key in ALL_FLAGS:
+            if ALL_FLAGS[Key] == Flag2:
+                return Key
+        
+    # If it wasnt found return nothing to true check later.
+    return ""
+    
