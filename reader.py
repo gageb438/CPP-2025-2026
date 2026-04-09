@@ -18,7 +18,8 @@ Target_File_Name = ""
 Target_File = "Target File Not Found."
 
 def Set_Target_File(self, Potential:str):
-    
+    try:
+        Target_File = open
 
 def Output_Flag_List(self):
     # Read through each flag.
