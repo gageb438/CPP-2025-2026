@@ -2,8 +2,9 @@ class Reader():
     # Init initializes the class.
     def __init__(self):
         # Set the defaults.
-        self.Target_File_Name = ""
-        self.Target_File = "Target File Not Found."
+        self.Target_File_Name = "reader.py"
+        self.Target_File = open(self.Target_File_Name, 'r')
+        
         self.ALL_FLAGS = {
             "GENERATE" : "#gen",
             "NOGENERATE" : "#nogen",
@@ -25,38 +26,45 @@ class Reader():
 
         # Try to open the target file, if not, output an error and reset the target file.
         try:
-            self.Target_File = open(self.Target_File_Name)
+            self.Target_File = open(self.Target_File_Name, 'r')
         except:
             print("Target file could not be found.")
-            self.Target_File = "Target File Not Found."
+            self.Target_File = open("reader.py", 'r')
 
     # Output flag list outputs all the flags stored, their location, and the uncleaned version.
     def Output_Flag_List(self):
         # Read through each flag.
         for Flag in self.Flag_Position:
             # Output its info.
-            print(f"Type : {self.Flag_Position[Flag]["TYPE"]}")
-            print(f"Location : {self.Flag_Position[Flag]["LOCATION"]}")
-            print(f"Uncleaned Flag : {self.Flag_Position[Flag]["UNCLEAN_FLAG"]}")
-            print("\n--------------------------------------------")
+            print(f'Type : {Flag["TYPE"]}')
+            print(f'Location : {Flag["LOCATION"]}')
+            print(f'Uncleaned Flag (newline stripped for output.): {Flag["UNCLEAN_FLAG"].rstrip("\n")}')
+            print("--------------------------------------------\n")
 
     # Identify main flags is the general driver, it reads through the target file and finds the flags, then stores them.
     def Identify_Main_Flags(self):
         # Check if the file is found. If not, output an error and return.
-        if self.Target_File == "Target File Not Found.":
+        if self.Target_File_Name == "reader.py" or self.Target_File.closed:
             print("Target file is not found. API not compiled.")
             return
         
+        #print("[CONSOLE] : Target file found.")
         # If it was found, go to the start of the file.
         self.Target_File.seek(0)
-
+        Starting_Position = self.Target_File.tell()
+        
+        #print("[CONSOLE] : Target file position reset, beginning read.")
+        
         # Read through the file
         for Line in self.Target_File:
+            #print("[CONSOLE] : Read active.")
+            #print("[CONSOLE] : Current line :", Line.strip())
             # Store the line's starting position to be used later.
-            Starting_Position = self.Target_File.tell()
+            Starting_Position += len(Line)
 
             # Check if its a flag.
-            _Process_Flag(Line, Starting_Position)
+            #print("[CONSOLE] : Potentially processing.")
+            self._Process_Flag(Line, Starting_Position)
 
     # Flag dentify allows other functions in this class to pass a potential flag and check if it is a flag, then return the
     # correlating flag type to the caller.
@@ -66,10 +74,10 @@ class Reader():
             # Clone the flag.
             Flag2 = Flag
 
-            Flag2 = Flag2.replace(" ", "")
-            Flag2 = Flag2.lower()
+            Flag2 = Flag2.strip().replace(" ", "").lower()
 
             # Check it against the flag list.
+            #print("[CONSOLE] : Potential flag modified, current :", Flag2)
             for Key in self.ALL_FLAGS:
                 if self.ALL_FLAGS[Key] == Flag2:
                     return Key
@@ -83,8 +91,9 @@ class Reader():
         # Get the potential key
         Potential_Key = self._Flag_Dentify(Flag=Flag)
 
-        # Check if there is no key or it is empty, if there is a key then add it to the keys.
+        # Check if there is no key or it is empty, if there is a key then add it to the 
         if Potential_Key and Potential_Key != "":
+            print("[CONSOLE] : Flag found. Adding to flag positions!")
             # Add it.
             self.Flag_Position.append(
                 {
