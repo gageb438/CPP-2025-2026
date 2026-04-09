@@ -18,8 +18,13 @@ Target_File_Name = ""
 Target_File = "Target File Not Found."
 
 def Set_Target_File(self, Potential:str):
+    Target_File_Name = Potential
+
     try:
-        Target_File = open
+        Target_File = open(Target_File_Name)
+    except:
+        print("Target file could not be found.")
+        Target_File = "Target File Not Found."
 
 def Output_Flag_List(self):
     # Read through each flag.
@@ -74,4 +79,3 @@ def _Process_Flag(self, Flag:str, Position:int):
                 "UNCLEAN_FLAG": Flag
             }
         )
-
