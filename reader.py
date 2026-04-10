@@ -59,7 +59,7 @@ class Reader():
             # Output its info.
             print(f'Type : {Flag["TYPE"]}')
             print(f'Location : {Flag["LOCATION"]}')
-            print(f'Uncleaned Flag (newline stripped for output.): {Flag["UNCLEAN_FLAG"].rstrip()}')
+            print(f'Uncleaned Flag (newline stripped for output.): "{Flag["UNCLEAN_FLAG"].rstrip()}"')
             print("--------------------------------------------\n")
 
     # Identify main flags is the general driver, it reads through the target file and finds the flags, then stores them.
