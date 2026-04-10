@@ -16,18 +16,42 @@ class Reader():
             # Flag setup listed below.
             #{"TYPE": "FLAG_TYPE", "LOCATION": 123, "UNCLEAN_FLAG": "123"}
         ]
+        self.Open = False
 
     # Set target file allows the user to attempt to set the target file.
     def Set_Target_File(self, Potential:str):
+        # Check if the file open status is true (meaning there is a file variable and it is open.) and close the old file.
+        if self.Open:
+            try:
+                self.Target_File.close()
+                self.Open = False
+            except Exception as Error:
+                print(Error)
+        
+        # Store former name
+        Former = self.Target_File_Name
+        
         # Set the file name to the potential
         self.Target_File_Name = Potential
-
-        # check if the file is there
+        
+        # Check if the file is there and attempt to open it.
         try:
             self.Target_File = open(self.Target_File_Name)
+            self.Open = True
         except:
+            # If there was a failure output that it couldnt be opened then adjust the variable
             print("File not opened.")
+            self.Open = False
             
+            try:
+                # Open the file, set the target name, and change the flag.
+                self.Target_File_Name = Former
+                self.Target_File = open(self.Target_File_Name)
+                self.Open = True
+            except Exception as Error:
+                # Output the error.
+                print(Error)
+        
     # Output flag list outputs all the flags stored, their location, and the uncleaned version.
     def Output_Flag_List(self):
         # Read through each flag.
@@ -35,13 +59,14 @@ class Reader():
             # Output its info.
             print(f'Type : {Flag["TYPE"]}')
             print(f'Location : {Flag["LOCATION"]}')
-            print(f'Uncleaned Flag (newline stripped for output.): {Flag["UNCLEAN_FLAG"].rstrip("\n")}')
+            print(f'Uncleaned Flag (newline stripped for output.): {Flag["UNCLEAN_FLAG"].rstrip()}')
             print("--------------------------------------------\n")
 
     # Identify main flags is the general driver, it reads through the target file and finds the flags, then stores them.
     def Identify_Main_Flags(self):
         # Check if the file is found. If not, output an error and return.
-        if not self._File_Exists():
+        if self.Open == False:
+            print("No Target File Found.")
             return
         
         # If it was found, go to the start of the file.
