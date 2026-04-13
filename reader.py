@@ -48,6 +48,9 @@ class Reader():
             print("Target file is not found. API not compiled.")
             return
         
+        # Clear the flag list
+        self.Flag_Position = []
+
         #print("[CONSOLE] : Target file found.")
         # If it was found, go to the start of the file.
         self.Target_File.seek(0)
@@ -101,6 +104,25 @@ class Reader():
                     "LOCATION": Position, 
                     "UNCLEAN_FLAG": Flag
                 }
-            )
+            ) 
 
-    
+    # Run utilizes identify_main_flags to check the file for flags and uses the builder to build the html file.
+    # Then it 
+    def Run(self):
+        # Identify the flags
+        self.Identify_Main_Flags()
+
+        # Check if there is a hostile flag
+        Hostile = False
+        Non_Hostile = False
+        for Flag in self.Flag_Position:
+            if Flag["TYPE"] == self.ALL_FLAGS["NOGENERATE"]:
+                Hostile = True
+            if Flag["TYPE"] == self.ALL_FLAGS["GENREATE"]:
+                Non_Hostile = True
+        
+        # Check if there was a positive flag set
+        if Hostile == False and Non_Hostile == True:
+            # Generate
+            print("Generatino not implemented")
+
