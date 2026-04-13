@@ -2,9 +2,7 @@ class Reader():
     # Init initializes the class.
     def __init__(self):
         # Set the defaults.
-        self.Target_File_Name = "reader.py"
-        self.Target_File = open(self.Target_File_Name, 'r')
-        
+        self.Target_File_Name = ""
         self.ALL_FLAGS = {
             "GENERATE" : "#gen",
             "NOGENERATE" : "#nogen",
@@ -18,19 +16,42 @@ class Reader():
             # Flag setup listed below.
             #{"TYPE": "FLAG_TYPE", "LOCATION": 123, "UNCLEAN_FLAG": "123"}
         ]
+        self.Open = False
 
     # Set target file allows the user to attempt to set the target file.
     def Set_Target_File(self, Potential:str):
+        # Check if the file open status is true (meaning there is a file variable and it is open.) and close the old file.
+        if self.Open:
+            try:
+                self.Target_File.close()
+                self.Open = False
+            except Exception as Error:
+                print(Error)
+        
+        # Store former name
+        Former = self.Target_File_Name
+        
         # Set the file name to the potential
         self.Target_File_Name = Potential
-
-        # Try to open the target file, if not, output an error and reset the target file.
+        
+        # Check if the file is there and attempt to open it.
         try:
-            self.Target_File = open(self.Target_File_Name, 'r')
+            self.Target_File = open(self.Target_File_Name)
+            self.Open = True
         except:
-            print("Target file could not be found.")
-            self.Target_File = open("reader.py", 'r')
-
+            # If there was a failure output that it couldnt be opened then adjust the variable
+            print("File not opened.")
+            self.Open = False
+            
+            try:
+                # Open the file, set the target name, and change the flag.
+                self.Target_File_Name = Former
+                self.Target_File = open(self.Target_File_Name)
+                self.Open = True
+            except Exception as Error:
+                # Output the error.
+                print(Error)
+        
     # Output flag list outputs all the flags stored, their location, and the uncleaned version.
     def Output_Flag_List(self):
         # Read through each flag.
@@ -38,14 +59,14 @@ class Reader():
             # Output its info.
             print(f'Type : {Flag["TYPE"]}')
             print(f'Location : {Flag["LOCATION"]}')
-            print(f'Uncleaned Flag (newline stripped for output.): {Flag["UNCLEAN_FLAG"].rstrip("\n")}')
+            print(f'Uncleaned Flag (newline stripped for output.): "{Flag["UNCLEAN_FLAG"].rstrip()}"')
             print("--------------------------------------------\n")
 
     # Identify main flags is the general driver, it reads through the target file and finds the flags, then stores them.
     def Identify_Main_Flags(self):
         # Check if the file is found. If not, output an error and return.
-        if self.Target_File_Name == "reader.py" or self.Target_File.closed:
-            print("Target file is not found. API not compiled.")
+        if self.Open == False:
+            print("No Target File Found.")
             return
         
         # Clear the flag list
@@ -56,12 +77,8 @@ class Reader():
         self.Target_File.seek(0)
         Starting_Position = self.Target_File.tell()
         
-        #print("[CONSOLE] : Target file position reset, beginning read.")
-        
         # Read through the file
         for Line in self.Target_File:
-            #print("[CONSOLE] : Read active.")
-            #print("[CONSOLE] : Current line :", Line.strip())
             # Store the line's starting position to be used later.
             Starting_Position += len(Line)
 
@@ -80,7 +97,6 @@ class Reader():
             Flag2 = Flag2.strip().replace(" ", "").lower()
 
             # Check it against the flag list.
-            #print("[CONSOLE] : Potential flag modified, current :", Flag2)
             for Key in self.ALL_FLAGS:
                 if self.ALL_FLAGS[Key] == Flag2:
                     return Key
@@ -96,7 +112,11 @@ class Reader():
 
         # Check if there is no key or it is empty, if there is a key then add it to the 
         if Potential_Key and Potential_Key != "":
-            print("[CONSOLE] : Flag found. Adding to flag positions!")
+            # Check if it is a no generate flag and cancel the loading instantly.
+            if Potential_Key == self.ALL_FLAGS["NOGENERATE"]:
+                print(f"No-generate flag has been found in file : {self.Target_File_Name} at position {Position}. A output file has been excluded.")
+                return
+            
             # Add it.
             self.Flag_Position.append(
                 {
