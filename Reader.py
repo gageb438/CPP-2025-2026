@@ -18,6 +18,30 @@ class Reader():
         ]
         self.Open = False
 
+    # Run utilizes identify_main_flags to check the file for flags and uses the builder to build the html file.
+    # Then it 
+    def Run(self):
+        # Identify the flags
+        self.Identify_Main_Flags()
+        self.Output_Flag_List()
+
+        # Check if there is a hostile flag
+        Hostile = False
+        Non_Hostile = False
+        for Flag in self.Flag_Position:
+            print(Flag)
+            if Flag["TYPE"] == "NOGENERATE":
+                Hostile = True
+            if Flag["TYPE"] == "GENERATE":
+                Non_Hostile = True
+        
+        # Check if there was a positive flag set
+        if Hostile == False and Non_Hostile == True:
+            # Generate
+            print("Generation not implemented")
+        else:
+            print(f"Flags are not valid in this file[{self.Target_File_Name}]. Generation will cease with current flag setup.\nHeres our setup : [GENERATE : {Non_Hostile}] and [NON_GENERATE : {Hostile}]")
+
     # Set target file allows the user to attempt to set the target file.
     def Set_Target_File(self, Potential:str):
         # Check if the file open status is true (meaning there is a file variable and it is open.) and close the old file.
@@ -125,27 +149,4 @@ class Reader():
                     "UNCLEAN_FLAG": Flag
                 }
             ) 
-
-    # Run utilizes identify_main_flags to check the file for flags and uses the builder to build the html file.
-    # Then it 
-    def Run(self):
-        # Identify the flags
-        self.Identify_Main_Flags()
-
-        # Check if there is a hostile flag
-        Hostile = False
-        Non_Hostile = False
-        for Flag in self.Flag_Position:
-            if Flag["TYPE"] == self.ALL_FLAGS["NOGENERATE"]:
-                Hostile = True
-            if Flag["TYPE"] == self.ALL_FLAGS["GENREATE"]:
-                Non_Hostile = True
-        
-        # Check if there was a positive flag set
-        if Hostile == False and Non_Hostile == True:
-            # Generate
-            print("Generation not implemented")
-        else:
-            print(f"Hostile flags detected. Flag setup is [GENERATE : {Non_Hostile}] and [NON_GENERATE : {Hostile}]")
-            
 
