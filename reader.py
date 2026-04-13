@@ -144,5 +144,8 @@ class Reader():
         # Check if there was a positive flag set
         if Hostile == False and Non_Hostile == True:
             # Generate
-            print("Generatino not implemented")
+            print("Generation not implemented")
+        else:
+            print(f"Hostile flags detected. Flag setup is [GENERATE : {Non_Hostile}] and [NON_GENERATE : {Hostile}]")
+            
 
