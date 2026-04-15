@@ -2,6 +2,8 @@ import Reader
 
 My_Reader = Reader.Reader()
 
-My_Reader.Set_Target_File("card_dealer.py")
+Success = My_Reader.Set_Target_File("C:\\Users\\jwboy\\Documents\\GitHub\\CPP-2025-2026\\card_dealer.py")
 
-My_Reader.Run()
+if Success:
+    My_Reader._Identify_Main_Flags()
+    My_Reader.Output_Flag_List()

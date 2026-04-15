@@ -16,29 +16,40 @@ class Reader():
             # Flag setup listed below.
             #{"TYPE": "FLAG_TYPE", "LOCATION": 123, "UNCLEAN_FLAG": "123"}
         ]
+
         self.Open = False
 
     # Run utilizes identify_main_flags to check the file for flags and uses the builder to build the html file.
     # Then it 
     def Run(self):
         # Identify the flags
-        self.Identify_Main_Flags()
-        self.Output_Flag_List()
+        self._Identify_Main_Flags()
 
-        # Check if there is a hostile flag
+        # Check if there is a hostile flag AND count function start/ends
+        Function_Starts = 0
+        Function_Ends = 0
         Hostile = False
         Non_Hostile = False
+
         for Flag in self.Flag_Position:
-            print(Flag)
             if Flag["TYPE"] == "NOGENERATE":
                 Hostile = True
-            if Flag["TYPE"] == "GENERATE":
+            elif Flag["TYPE"] == "GENERATE":
                 Non_Hostile = True
+            elif Flag["TYPE"] == "FUNCTION_START":
+                Function_Starts += 1
+            elif Flag["TYPE"] == "FUNCTION_END":
+                Function_Ends += 1
         
         # Check if there was a positive flag set
         if Hostile == False and Non_Hostile == True:
-            # Generate
-            print("Generation not implemented")
+            # Now check if there was equal starts and ends
+            if Function_Starts == Function_Ends:
+                # Generate
+                self._Generate(Function_Starts)
+            else:
+                print(f"There was {Function_Starts} function starts found, while there was {Function_Ends} found. Each function must be started and ended.")
+                print(f"Generation will cease in this file : {self.Target_File_Name}.")
         else:
             print(f"Flags are not valid in this file[{self.Target_File_Name}]. Generation will cease with current flag setup.\nHeres our setup : [GENERATE : {Non_Hostile}] and [NON_GENERATE : {Hostile}]")
 
@@ -62,21 +73,29 @@ class Reader():
         try:
             self.Target_File = open(self.Target_File_Name)
             self.Open = True
-        except:
+
+            return True
+        except Exception as Error:
             # If there was a failure output that it couldnt be opened then adjust the variable
             print("File not opened.")
+            print(Error)
             self.Open = False
             
             try:
                 # Open the file, set the target name, and change the flag.
-                self.Target_File_Name = Former
-                self.Target_File = open(self.Target_File_Name)
-                self.Open = True
-            except Exception as Error:
+                if Former != "":
+                    self.Target_File_Name = Former
+                    self.Target_File = open(self.Target_File_Name)
+                    self.Open = True
+            except Exception as Error_2:
                 # Output the error.
-                print(Error)
+                print(Error_2)
+
+            # File wasnt opened.
+            return False
         
-    # Output flag list outputs all the flags stored, their location, and the uncleaned version.
+    # Output flag list outputs all the flags stored, their location, and the uncleaned version. 
+    # This function is primarily used for debugging and developing.
     def Output_Flag_List(self):
         # Read through each flag.
         for Flag in self.Flag_Position:
@@ -87,7 +106,7 @@ class Reader():
             print("--------------------------------------------\n")
 
     # Identify main flags is the general driver, it reads through the target file and finds the flags, then stores them.
-    def Identify_Main_Flags(self):
+    def _Identify_Main_Flags(self):
         # Check if the file is found. If not, output an error and return.
         if self.Open == False:
             print("No Target File Found.")
@@ -122,7 +141,7 @@ class Reader():
 
             # Check it against the flag list.
             for Key in self.ALL_FLAGS:
-                if self.ALL_FLAGS[Key] == Flag2:
+                if self.ALL_FLAGS[Key] in Flag2:
                     return Key
             
         # If it wasnt found return nothing to true check later.
@@ -148,5 +167,38 @@ class Reader():
                     "LOCATION": Position, 
                     "UNCLEAN_FLAG": Flag
                 }
-            ) 
+            ) #
 
+    # Generate generates the html file.
+    def _Generate(self, Functions:int):
+        # Initialize files
+        HTML_Output_File_Name = self.Target_File_Name.rstrip(".py") + ".html"
+        HTML_Output_File = open(HTML_Output_File_Name, "w")
+        HTML_Template_File = open("C:\\Users\\jwboy\\Documents\\GitHub\\CPP-2025-2026\\template.html", "r")
+
+        # Hardcoded HTML template.. (bad idea)
+        for Number in range(46):
+            Line = HTML_Template_File.readline()
+            HTML_Output_File.write(Line)
+
+
+        # Get the generate function
+        Stored_Function = self.Flag_Position.pop(0)
+
+        for _ in range(Functions):
+            Function = self.Flag_Position.pop(0)
+
+            for Line in range(72-47):
+                if "<!--Function_Name-->" in Line:
+                    #HTML_Output_File.write(f"    <h2><!--Function_Name-->{}</h2>")
+                    pass
+                        
+
+                
+                    
+
+        print("File generated.")
+
+        HTML_Output_File.close()
+        HTML_Template_File.close()
+        self.Target_File.close()

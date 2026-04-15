@@ -1,3 +1,5 @@
+#gen
+#o: test
 import random
 
 def card_dealer_main(): #program 9-1
